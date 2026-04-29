@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Privacy Policy - Gallus</title>
+  <link rel="icon" type="image/png" href="../../app_icon.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../../legal.css">
+</head>
+<body>
+  <div class="container">
+    <a href="../../fr/privacy/" class="lang-switch">Version française</a>
+    <h1>Privacy</h1>
+    <p class="updated">Last updated: April 29, 2026</p>
+    <p class="intro">We take the protection of your personal data seriously. This privacy policy explains how the <strong>Gallus</strong> application collects, uses, shares, and protects information when you use it. It applies to all <strong>Gallus</strong> users, regardless of where you reside.</p>
+    <p class="intro"><strong>In short:</strong> Gallus runs entirely on your device. We have no backend server, no user account, and we collect no personal data. No advertising tracking.</p>
+
+    <h2>1. Data Controller</h2>
+    <p>The data controller is <strong>Gallus</strong>, based in France. Contact: <a href="mailto:contact@gallus-app.com">contact@gallus-app.com</a></p>
+
+    <h2>2. Data Collected</h2>
+
+    <h3>2.1 No server-side collection</h3>
+    <p>Gallus uses <strong>no backend server</strong> and provides <strong>no user account system</strong>. No personal data is transmitted to our servers (because we don't have any).</p>
+
+    <h3>2.2 Data stored locally on your device</h3>
+    <p>The application stores the following data <strong>only on your device</strong>, in the application's private sandbox:</p>
+    <table>
+      <thead>
+        <tr>
+          <th>Data</th>
+          <th>Purpose</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Your alarms (time, days, label, sound)</td>
+          <td>Schedule alarm triggers</td>
+        </tr>
+        <tr>
+          <td>Your custom engagement phrases</td>
+          <td>Voice challenge to dismiss the alarm</td>
+        </tr>
+        <tr>
+          <td>Motivation photo (if you add one)</td>
+          <td>Personalized display during the challenge</td>
+        </tr>
+        <tr>
+          <td>Favorite quote (if you set one)</td>
+          <td>Personalized display during the challenge</td>
+        </tr>
+        <tr>
+          <td>Preferences (theme, language, vibration)</td>
+          <td>App personalization</td>
+        </tr>
+        <tr>
+          <td>Subscription state (RevenueCat local cache)</td>
+          <td>Verify access to features</td>
+        </tr>
+      </tbody>
+    </table>
+    <p>This data stays on your device. It is removed when you uninstall the application.</p>
+
+    <h3>2.3 Required system permissions</h3>
+    <table>
+      <thead>
+        <tr>
+          <th>Permission</th>
+          <th>Purpose</th>
+          <th>Required?</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Microphone</td>
+          <td>Voice recognition for the challenge (speak the phrase to dismiss)</td>
+          <td>Yes (otherwise keyboard fallback)</td>
+        </tr>
+        <tr>
+          <td>Speech recognition</td>
+          <td>Verify that you correctly pronounce the phrase</td>
+          <td>Yes (otherwise keyboard fallback)</td>
+        </tr>
+        <tr>
+          <td>Notifications</td>
+          <td>Trigger alarms and chained reminders</td>
+          <td>Yes</td>
+        </tr>
+        <tr>
+          <td>Alarms (AlarmKit, iOS 26+)</td>
+          <td>Allow alarms to ring even in silent mode or Do Not Disturb</td>
+          <td>Yes (iOS only)</td>
+        </tr>
+        <tr>
+          <td>Photo library</td>
+          <td>Pick a motivation photo</td>
+          <td>No, optional</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <h2>3. Speech recognition</h2>
+    <p>The voice challenge relies on the operating system's speech recognition:</p>
+    <ul>
+      <li><strong>iOS:</strong> Apple's <em>Speech</em> framework. Depending on device settings and the chosen language, recognition may run on-device or via Apple's servers. Apple is solely responsible for processing audio in this context.</li>
+      <li><strong>Android:</strong> Google's speech recognition service. Processing may be on-device or via Google's servers.</li>
+    </ul>
+    <p>Gallus <strong>does not record</strong> your voice, <strong>does not store</strong> transcriptions, and <strong>does not send any audio</strong> to its own servers (we have none). Only the text result returned by the system is locally compared to your engagement phrase, then immediately removed from memory.</p>
+    <p>Apple's policy: <a href="https://www.apple.com/legal/privacy/" target="_blank" rel="noopener noreferrer">apple.com/legal/privacy/</a> · Google's policy: <a href="https://policies.google.com/privacy" target="_blank" rel="noopener noreferrer">policies.google.com/privacy</a></p>
+
+    <h2>4. Subscription and in-app purchases</h2>
+    <p>Access to Gallus is gated by a paid subscription (monthly or yearly with a free trial). Payments are handled by the app stores, not by Gallus:</p>
+    <ul>
+      <li><strong>iOS:</strong> Apple App Store (in-app purchase). Apple processes and stores your payment information per its privacy policy.</li>
+      <li><strong>Android:</strong> Google Play Billing. Google processes and stores your payment information per its privacy policy.</li>
+      <li><strong>RevenueCat:</strong> we use RevenueCat as an abstraction layer to verify subscription state. RevenueCat receives an anonymous user identifier (local UUID generated by the app) and the transaction identifier returned by the store. RevenueCat <strong>never receives</strong> your name, email, or payment information.</li>
+    </ul>
+    <p>RevenueCat's policy: <a href="https://www.revenuecat.com/privacy" target="_blank" rel="noopener noreferrer">revenuecat.com/privacy</a></p>
+
+    <h2>5. Tracking and advertising</h2>
+    <p>Gallus <strong>shows no ads</strong> and <strong>performs no cross-app tracking</strong>. The app's <em>PrivacyInfo.xcprivacy</em> file formally declares to Apple: <em>NSPrivacyTracking = false</em> and an empty <em>NSPrivacyCollectedDataTypes</em>.</p>
+    <p>The advertising identifier (IDFA on iOS, AAID on Android) is never read or used.</p>
+
+    <h2>6. Sharing data with third parties</h2>
+    <p>We share no personal data with third parties for commercial or advertising purposes. The only technical third parties involved are:</p>
+    <ul>
+      <li><strong>Apple</strong> (iOS, AlarmKit, Speech, App Store, APNs notifications).</li>
+      <li><strong>Google</strong> (Android, Speech, Play Billing, FCM notifications — for the upcoming Android version).</li>
+      <li><strong>RevenueCat</strong> (subscription state verification only).</li>
+      <li><strong>Expo / React Native</strong> (development framework). Gallus does not use Expo Updates in a way that transmits user data.</li>
+    </ul>
+    <p><strong>We never sell your data.</strong></p>
+
+    <h2>7. Retention</h2>
+    <p>All your data is retained locally <strong>as long as the application is installed</strong>. To erase everything, uninstall Gallus: iOS and Android automatically wipe the app's private storage.</p>
+    <p>Purchase history is kept by Apple or Google according to their respective policies, independently of Gallus.</p>
+
+    <h2>8. Security</h2>
+    <ul>
+      <li>Local data is stored in the app's private sandbox (iOS App Sandbox, Android internal storage), inaccessible to other apps.</li>
+      <li>Communications with Apple, Google, and RevenueCat are encrypted (HTTPS/TLS).</li>
+      <li>No password to protect: there is no account.</li>
+    </ul>
+
+    <h2>9. Your rights</h2>
+    <p>Since we collect no data on the server side, most GDPR rights are exercised directly within the app:</p>
+    <table>
+      <thead>
+        <tr>
+          <th>Right</th>
+          <th>How to exercise</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Access</td>
+          <td>All your data is visible inside the application itself.</td>
+        </tr>
+        <tr>
+          <td>Rectification</td>
+          <td>Edit alarms, phrases, and preferences directly in the app.</td>
+        </tr>
+        <tr>
+          <td>Erasure</td>
+          <td>Uninstall the app: the OS wipes all local data.</td>
+        </tr>
+        <tr>
+          <td>Portability</td>
+          <td>Not applicable: no data is held by Gallus outside your device.</td>
+        </tr>
+        <tr>
+          <td>Objection / consent withdrawal</td>
+          <td>Revoke permissions (microphone, notifications) in system Settings.</td>
+        </tr>
+      </tbody>
+    </table>
+    <p>For any further question, contact <a href="mailto:contact@gallus-app.com">contact@gallus-app.com</a>. Response time: 30 days.</p>
+
+    <h2>10. Push notifications</h2>
+    <p>Notifications are essential to Gallus: they trigger alarms and maintain the chained-alarm mechanism (which keeps reminding you until you complete the challenge). Disabling notifications means alarms cannot be reliably triggered.</p>
+
+    <h2>11. Protection of minors</h2>
+    <p>Gallus is intended for users aged 13 or older, in line with app store terms. We do not knowingly collect data from minors. If you believe a minor has provided information, contact us at <a href="mailto:contact@gallus-app.com">contact@gallus-app.com</a>.</p>
+
+    <h2>12. International transfers</h2>
+    <p>As we store no data on a server, no international data transfer occurs through Gallus. Any transfers performed by Apple, Google, or RevenueCat as part of their own services are governed by their respective policies (EU Standard Contractual Clauses, EU-US Data Privacy Framework).</p>
+
+    <h2>13. Changes to this policy</h2>
+    <p>If we update this policy:</p>
+    <ul>
+      <li>The "Last updated" date at the top of this page will change.</li>
+      <li>For substantial changes, we will send an in-app notification.</li>
+    </ul>
+
+    <h2>14. Complaint to a supervisory authority</h2>
+    <p>If you believe your rights are not being respected, you may file a complaint with:</p>
+    <ul>
+      <li><strong>France:</strong> CNIL (<a href="https://www.cnil.fr" target="_blank" rel="noopener noreferrer">www.cnil.fr</a>)</li>
+      <li><strong>Other EU country:</strong> your national data protection authority.</li>
+    </ul>
+
+    <h2>15. Contact</h2>
+    <p>For any question regarding this policy: <a href="mailto:contact@gallus-app.com">contact@gallus-app.com</a></p>
+
+    <a href="../../" class="back-home">&larr; Back to home</a>
+  </div>
+</body>
+</html>
