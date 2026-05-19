@@ -14,17 +14,18 @@
   <div class="container">
     <a href="../../fr/privacy/" class="lang-switch">Version française</a>
     <h1>Privacy</h1>
-    <p class="updated">Last updated: April 29, 2026</p>
+    <p class="updated">Last updated: May 19, 2026</p>
     <p class="intro">We take the protection of your personal data seriously. This privacy policy explains how the <strong>Gallus</strong> application collects, uses, shares, and protects information when you use it. It applies to all <strong>Gallus</strong> users, regardless of where you reside.</p>
-    <p class="intro"><strong>In short:</strong> Gallus runs entirely on your device. We have no backend server, no user account, and we collect no personal data. No advertising tracking.</p>
+    <p class="intro"><strong>In short:</strong> Gallus runs mostly on your device. No user account, no personally identifiable information (name, email, profile picture) is sent to any server, no advertising tracking. We only use an <strong>anonymous product analytics</strong> service (PostHog, hosted in Europe) to understand how the app is used — see section 2.4.</p>
 
     <h2>1. Data Controller</h2>
     <p>The data controller is <strong>Gallus</strong>, based in France. Contact: <a href="mailto:contact@gallus-app.com">contact@gallus-app.com</a></p>
 
     <h2>2. Data Collected</h2>
 
-    <h3>2.1 No server-side collection</h3>
-    <p>Gallus uses <strong>no backend server</strong> and provides <strong>no user account system</strong>. No personal data is transmitted to our servers (because we don't have any).</p>
+    <h3>2.1 No user account, no personally identifiable data</h3>
+    <p>Gallus provides <strong>no user account system</strong>. We do not ask for your name, email, phone number, or any identity data. No personally identifiable information is transmitted to any server.</p>
+    <p>The only data leaving your device is <strong>anonymous usage events</strong> sent to our product analytics service (see 2.4) and the information strictly required for in-app payments handled by Apple/Google and RevenueCat (see section 4).</p>
 
     <h3>2.2 Data stored locally on your device</h3>
     <p>The application stores the following data <strong>only on your device</strong>, in the application's private sandbox:</p>
@@ -102,11 +103,49 @@
       </tbody>
     </table>
 
+    <h3>2.4 Anonymous product analytics (PostHog)</h3>
+    <p>Gallus uses <strong>PostHog</strong> (hosted in Europe, <code>eu.i.posthog.com</code>) to understand how the app is used and improve it. PostHog receives anonymous events tied to a <strong>random identifier generated locally</strong> on your device. This identifier is not linked to any identity information.</p>
+    <table>
+      <thead>
+        <tr>
+          <th>Data sent to PostHog</th>
+          <th>Data <strong>never</strong> sent</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>
+            <ul>
+              <li>App opens (lifecycle)</li>
+              <li>Onboarding screens visited (steps, drop-offs)</li>
+              <li>Paywall view and plan selection (monthly/yearly)</li>
+              <li>Purchase attempts (succeeded, cancelled, failed) — no payment details</li>
+              <li>Device type, iOS version, device language</li>
+              <li>Installed app version</li>
+            </ul>
+          </td>
+          <td>
+            <ul>
+              <li>Name, email, profile picture — you don't enter any of these in the app</li>
+              <li>Geo-precise IP address (PostHog truncates the IP)</li>
+              <li>IDFA / advertising identifier</li>
+              <li>Content of your engagement phrases or alarms</li>
+              <li>Recorded audio or voice challenge transcripts</li>
+              <li>Motivation photo</li>
+              <li>Payment information</li>
+            </ul>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    <p>This data is used solely for <strong>product analytics</strong> (e.g., identifying friction points in onboarding). It is never used for advertising or shared with third parties for commercial purposes. The app's privacy manifest (<em>PrivacyInfo.xcprivacy</em>) formally declares these collections to Apple as <em>Product Interaction</em>, <em>Other Usage Data</em>, <em>Purchase History</em>, and <em>User ID</em> — all marked <em>Linked to User = false</em> and <em>Used for Tracking = false</em>.</p>
+    <p>PostHog's policy: <a href="https://posthog.com/privacy" target="_blank" rel="noopener noreferrer">posthog.com/privacy</a></p>
+
     <h2>3. Speech recognition</h2>
     <p>The voice challenge relies on the operating system's speech recognition:</p>
     <ul>
-      <li><strong>iOS:</strong> Apple's <em>Speech</em> framework. Depending on device settings and the chosen language, recognition may run on-device or via Apple's servers. Apple is solely responsible for processing audio in this context.</li>
-      <li><strong>Android:</strong> Google's speech recognition service. Processing may be on-device or via Google's servers.</li>
+      <li><strong>iOS:</strong> Apple's <em>Speech</em> framework. Gallus explicitly configures recognition in <strong>100% on-device</strong> mode (<code>requiresOnDeviceRecognition = true</code>). No audio or transcription is sent to Apple's servers. If the requested language is not available on-device, the challenge falls back to keyboard input.</li>
+      <li><strong>Android:</strong> Google's speech recognition service (Android version forthcoming). Processing may be on-device or via Google's servers depending on device capabilities. Google is solely responsible for processing audio in this context.</li>
     </ul>
     <p>Gallus <strong>does not record</strong> your voice, <strong>does not store</strong> transcriptions, and <strong>does not send any audio</strong> to its own servers (we have none). Only the text result returned by the system is locally compared to your engagement phrase, then immediately removed from memory.</p>
     <p>Apple's policy: <a href="https://www.apple.com/legal/privacy/" target="_blank" rel="noopener noreferrer">apple.com/legal/privacy/</a> · Google's policy: <a href="https://policies.google.com/privacy" target="_blank" rel="noopener noreferrer">policies.google.com/privacy</a></p>
@@ -116,20 +155,21 @@
     <ul>
       <li><strong>iOS:</strong> Apple App Store (in-app purchase). Apple processes and stores your payment information per its privacy policy.</li>
       <li><strong>Android:</strong> Google Play Billing. Google processes and stores your payment information per its privacy policy.</li>
-      <li><strong>RevenueCat:</strong> we use RevenueCat as an abstraction layer to verify subscription state. RevenueCat receives an anonymous user identifier (local UUID generated by the app) and the transaction identifier returned by the store. RevenueCat <strong>never receives</strong> your name, email, or payment information.</li>
+      <li><strong>RevenueCat:</strong> we use RevenueCat as an abstraction layer to verify subscription state. RevenueCat receives an anonymous user identifier (local UUID generated by the app), the transaction identifier returned by the store, and the subscription status (active, in trial, expired). RevenueCat <strong>never receives</strong> your name, email, or payment information.</li>
     </ul>
     <p>RevenueCat's policy: <a href="https://www.revenuecat.com/privacy" target="_blank" rel="noopener noreferrer">revenuecat.com/privacy</a></p>
 
     <h2>5. Tracking and advertising</h2>
-    <p>Gallus <strong>shows no ads</strong> and <strong>performs no cross-app tracking</strong>. The app's <em>PrivacyInfo.xcprivacy</em> file formally declares to Apple: <em>NSPrivacyTracking = false</em> and an empty <em>NSPrivacyCollectedDataTypes</em>.</p>
-    <p>The advertising identifier (IDFA on iOS, AAID on Android) is never read or used.</p>
+    <p>Gallus <strong>shows no ads</strong> and <strong>performs no cross-app tracking</strong>. The app's <em>PrivacyInfo.xcprivacy</em> file formally declares to Apple: <em>NSPrivacyTracking = false</em>. The data types collected by PostHog and RevenueCat (see sections 2.4 and 4) are declared with <em>NSPrivacyCollectedDataTypeTracking = false</em> and <em>NSPrivacyCollectedDataTypeLinked = false</em>.</p>
+    <p>The advertising identifier (IDFA on iOS, AAID on Android) is never read or used. No <em>App Tracking Transparency</em> (ATT) prompt is shown, because no cross-app tracking is performed.</p>
 
     <h2>6. Sharing data with third parties</h2>
     <p>We share no personal data with third parties for commercial or advertising purposes. The only technical third parties involved are:</p>
     <ul>
-      <li><strong>Apple</strong> (iOS, AlarmKit, Speech, App Store, APNs notifications).</li>
+      <li><strong>Apple</strong> (iOS, AlarmKit, Speech, App Store, APNs notifications, In-App Purchase).</li>
       <li><strong>Google</strong> (Android, Speech, Play Billing, FCM notifications — for the upcoming Android version).</li>
-      <li><strong>RevenueCat</strong> (subscription state verification only).</li>
+      <li><strong>RevenueCat</strong> (subscription state verification only). See section 4.</li>
+      <li><strong>PostHog</strong> (anonymous product analytics, EU-hosted). See section 2.4.</li>
       <li><strong>Expo / React Native</strong> (development framework). Gallus does not use Expo Updates in a way that transmits user data.</li>
     </ul>
     <p><strong>We never sell your data.</strong></p>
@@ -141,7 +181,7 @@
     <h2>8. Security</h2>
     <ul>
       <li>Local data is stored in the app's private sandbox (iOS App Sandbox, Android internal storage), inaccessible to other apps.</li>
-      <li>Communications with Apple, Google, and RevenueCat are encrypted (HTTPS/TLS).</li>
+      <li>Communications with Apple, Google, RevenueCat, and PostHog are encrypted (HTTPS/TLS).</li>
       <li>No password to protect: there is no account.</li>
     </ul>
 
@@ -165,15 +205,15 @@
         </tr>
         <tr>
           <td>Erasure</td>
-          <td>Uninstall the app: the OS wipes all local data.</td>
+          <td>Uninstall the app: the OS wipes all local data. To request erasure of the anonymous events sent to PostHog associated with your local identifier, contact us at <a href="mailto:contact@gallus-app.com">contact@gallus-app.com</a>.</td>
         </tr>
         <tr>
           <td>Portability</td>
-          <td>Not applicable: no data is held by Gallus outside your device.</td>
+          <td>Not applicable: no identity data is held by Gallus outside your device.</td>
         </tr>
         <tr>
           <td>Objection / consent withdrawal</td>
-          <td>Revoke permissions (microphone, notifications) in system Settings.</td>
+          <td>Revoke permissions (microphone, notifications) in system Settings. To opt out of anonymous analytics, contact us at <a href="mailto:contact@gallus-app.com">contact@gallus-app.com</a>.</td>
         </tr>
       </tbody>
     </table>
@@ -186,7 +226,7 @@
     <p>Gallus is intended for users aged 13 or older, in line with app store terms. We do not knowingly collect data from minors. If you believe a minor has provided information, contact us at <a href="mailto:contact@gallus-app.com">contact@gallus-app.com</a>.</p>
 
     <h2>12. International transfers</h2>
-    <p>As we store no data on a server, no international data transfer occurs through Gallus. Any transfers performed by Apple, Google, or RevenueCat as part of their own services are governed by their respective policies (EU Standard Contractual Clauses, EU-US Data Privacy Framework).</p>
+    <p>The anonymous product analytics (PostHog, see 2.4) are hosted <strong>in Europe</strong> (<code>eu.i.posthog.com</code>) — no transfer outside the EU occurs for this collection. Any transfers performed by Apple, Google, or RevenueCat as part of their own services are governed by their respective policies (EU Standard Contractual Clauses, EU-US Data Privacy Framework).</p>
 
     <h2>13. Changes to this policy</h2>
     <p>If we update this policy:</p>
