@@ -14,18 +14,19 @@
   <div class="container">
     <a href="../../fr/privacy/" class="lang-switch">Version française</a>
     <h1>Privacy</h1>
-    <p class="updated">Last updated: May 19, 2026</p>
+    <p class="updated">Last updated: June 7, 2026</p>
     <p class="intro">We take the protection of your personal data seriously. This privacy policy explains how the <strong>Gallus</strong> application collects, uses, shares, and protects information when you use it. It applies to all <strong>Gallus</strong> users, regardless of where you reside.</p>
-    <p class="intro"><strong>In short:</strong> Gallus runs mostly on your device. No user account, no personally identifiable information (name, email, profile picture) is sent to any server, no advertising tracking. We only use an <strong>anonymous product analytics</strong> service (PostHog, hosted in Europe) to understand how the app is used — see section 2.4.</p>
+    <p class="intro"><strong>In short:</strong> Gallus runs mostly on your device. No user account, no advertising tracking. The only personal data we may collect is a <strong>phone number you can optionally provide</strong> during onboarding, so we can reach out for feedback while Gallus is young — you can skip it (see section 2.1). Otherwise, we only use an <strong>anonymous product analytics</strong> service (PostHog, hosted in Europe) to understand how the app is used — see section 2.4.</p>
 
     <h2>1. Data Controller</h2>
     <p>The data controller is <strong>Gallus</strong>, based in France. Contact: <a href="mailto:contact@gallus-app.com">contact@gallus-app.com</a></p>
 
     <h2>2. Data Collected</h2>
 
-    <h3>2.1 No user account, no personally identifiable data</h3>
-    <p>Gallus provides <strong>no user account system</strong>. We do not ask for your name, email, phone number, or any identity data. No personally identifiable information is transmitted to any server.</p>
-    <p>The only data leaving your device is <strong>anonymous usage events</strong> sent to our product analytics service (see 2.4) and the information strictly required for in-app payments handled by Apple/Google and RevenueCat (see section 4).</p>
+    <h3>2.1 No user account — one optional piece of contact data</h3>
+    <p>Gallus provides <strong>no user account system</strong>. We do not ask for your name, email, or any identity data, and no such information is transmitted to any server.</p>
+    <p>During onboarding, we do ask — <strong>optionally</strong> — for your <strong>phone number</strong>. This is the only piece of personal data Gallus collects. You can <strong>skip this step</strong> and keep using the app normally. If you choose to provide it, we use it for a single purpose: to <strong>contact you (typically via WhatsApp)</strong> to gather feedback and help us improve Gallus during this early phase. We <strong>never sell it</strong>, never use it for advertising, and you can ask us to delete it or to stop contacting you at any time (see sections 9 and 15).</p>
+    <p>Apart from this optional phone number, the only data leaving your device is <strong>anonymous usage events</strong> sent to our product analytics service (see 2.4) and the information strictly required for in-app payments handled by Apple/Google and RevenueCat (see section 4).</p>
 
     <h3>2.2 Data stored locally on your device</h3>
     <p>The application stores the following data <strong>only on your device</strong>, in the application's private sandbox:</p>
@@ -104,7 +105,8 @@
     </table>
 
     <h3>2.4 Anonymous product analytics (PostHog)</h3>
-    <p>Gallus uses <strong>PostHog</strong> (hosted in Europe, <code>eu.i.posthog.com</code>) to understand how the app is used and improve it. PostHog receives anonymous events tied to a <strong>random identifier generated locally</strong> on your device. This identifier is not linked to any identity information.</p>
+    <p>Gallus uses <strong>PostHog</strong> (hosted in Europe, <code>eu.i.posthog.com</code>) to understand how the app is used and improve it. PostHog receives anonymous events tied to a <strong>random identifier generated locally</strong> on your device. By default this identifier is not linked to any identity information.</p>
+    <p>If you choose to provide your phone number (section 2.1), it is attached to your PostHog profile as a <strong>contact property</strong> so we can reach out for feedback. In that case, your analytics profile is <strong>no longer anonymous</strong>. If you skip that step, your profile stays anonymous.</p>
     <table>
       <thead>
         <tr>
@@ -117,6 +119,7 @@
           <td>
             <ul>
               <li>App opens (lifecycle)</li>
+              <li>Phone number — <strong>only if you choose to provide it</strong> (section 2.1), stored as a contact property</li>
               <li>Onboarding screens visited (steps, drop-offs)</li>
               <li>Paywall view and plan selection (monthly/yearly)</li>
               <li>Purchase attempts (succeeded, cancelled, failed) — no payment details</li>
@@ -138,7 +141,7 @@
         </tr>
       </tbody>
     </table>
-    <p>This data is used solely for <strong>product analytics</strong> (e.g., identifying friction points in onboarding). It is never used for advertising or shared with third parties for commercial purposes. The app's privacy manifest (<em>PrivacyInfo.xcprivacy</em>) formally declares these collections to Apple as <em>Product Interaction</em>, <em>Other Usage Data</em>, <em>Purchase History</em>, and <em>User ID</em> — all marked <em>Linked to User = false</em> and <em>Used for Tracking = false</em>.</p>
+    <p>This data is used solely for <strong>product analytics</strong> (e.g., identifying friction points in onboarding). It is never used for advertising or shared with third parties for commercial purposes. The app's privacy manifest (<em>PrivacyInfo.xcprivacy</em>) formally declares these analytics collections to Apple as <em>Product Interaction</em>, <em>Other Usage Data</em>, <em>Purchase History</em>, and <em>User ID</em> — all marked <em>Linked to User = false</em> and <em>Used for Tracking = false</em>. The optional phone number (section 2.1), when you provide it, is declared separately as <em>Phone Number</em> (Contact Info), <em>Linked to User = true</em>, used <em>only to contact you</em> and <em>never for tracking</em>.</p>
     <p>PostHog's policy: <a href="https://posthog.com/privacy" target="_blank" rel="noopener noreferrer">posthog.com/privacy</a></p>
 
     <h2>3. Speech recognition</h2>
@@ -169,13 +172,15 @@
       <li><strong>Apple</strong> (iOS, AlarmKit, Speech, App Store, APNs notifications, In-App Purchase).</li>
       <li><strong>Google</strong> (Android, Speech, Play Billing, FCM notifications — for the upcoming Android version).</li>
       <li><strong>RevenueCat</strong> (subscription state verification only). See section 4.</li>
-      <li><strong>PostHog</strong> (anonymous product analytics, EU-hosted). See section 2.4.</li>
+      <li><strong>PostHog</strong> (product analytics, EU-hosted; also stores your phone number as a contact property if you provide it). See section 2.4.</li>
+      <li><strong>Meta / WhatsApp</strong> — <strong>only if you provided your phone number</strong> (section 2.1). We use WhatsApp to contact you for feedback; your number is then processed by Meta under its own terms.</li>
       <li><strong>Expo / React Native</strong> (development framework). Gallus does not use Expo Updates in a way that transmits user data.</li>
     </ul>
     <p><strong>We never sell your data.</strong></p>
 
     <h2>7. Retention</h2>
     <p>All your data is retained locally <strong>as long as the application is installed</strong>. To erase everything, uninstall Gallus: iOS and Android automatically wipe the app's private storage.</p>
+    <p>If you provided your phone number (section 2.1), it is kept on our PostHog profile until you ask us to delete it. Uninstalling the app does not automatically remove it — email us at <a href="mailto:contact@gallus-app.com">contact@gallus-app.com</a> and we will delete it.</p>
     <p>Purchase history is kept by Apple or Google according to their respective policies, independently of Gallus.</p>
 
     <h2>8. Security</h2>
@@ -205,7 +210,7 @@
         </tr>
         <tr>
           <td>Erasure</td>
-          <td>Uninstall the app: the OS wipes all local data. To request erasure of the anonymous events sent to PostHog associated with your local identifier, contact us at <a href="mailto:contact@gallus-app.com">contact@gallus-app.com</a>.</td>
+          <td>Uninstall the app: the OS wipes all local data. To request erasure of the events sent to PostHog associated with your local identifier — <strong>including your phone number if you provided one</strong> — contact us at <a href="mailto:contact@gallus-app.com">contact@gallus-app.com</a>.</td>
         </tr>
         <tr>
           <td>Portability</td>
@@ -213,7 +218,7 @@
         </tr>
         <tr>
           <td>Objection / consent withdrawal</td>
-          <td>Revoke permissions (microphone, notifications) in system Settings. To opt out of anonymous analytics, contact us at <a href="mailto:contact@gallus-app.com">contact@gallus-app.com</a>.</td>
+          <td>Revoke permissions (microphone, notifications) in system Settings. To opt out of analytics, or to <strong>stop us from contacting you</strong> on the number you provided, contact us at <a href="mailto:contact@gallus-app.com">contact@gallus-app.com</a>.</td>
         </tr>
       </tbody>
     </table>

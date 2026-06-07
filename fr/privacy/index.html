@@ -14,9 +14,9 @@
   <div class="container">
     <a href="../../en/privacy/" class="lang-switch">English version</a>
     <h1>Confidentialité</h1>
-    <p class="updated">Dernière mise à jour : 19 mai 2026</p>
+    <p class="updated">Dernière mise à jour : 7 juin 2026</p>
     <p class="intro">Nous accordons une grande importance à la protection de vos données personnelles. Cette politique de confidentialité explique comment l'application <strong>Gallus</strong> collecte, utilise, partage et protège les informations lors de son utilisation. Elle s'applique à tous les utilisateurs de <strong>Gallus</strong>, que vous résidiez en France, dans l'Union européenne, aux États-Unis ou dans tout autre pays.</p>
-    <p class="intro"><strong>En résumé :</strong> Gallus fonctionne essentiellement en local sur votre appareil. Pas de compte utilisateur, aucune donnée personnellement identifiable (nom, email, photo de profil) n'est envoyée à des serveurs, aucun tracking publicitaire. Nous utilisons uniquement un service d'<strong>analytics produit anonymes</strong> (PostHog, hébergé en Europe) pour comprendre comment l'application est utilisée — voir la section 2.4.</p>
+    <p class="intro"><strong>En résumé :</strong> Gallus fonctionne essentiellement en local sur votre appareil. Pas de compte utilisateur, aucun tracking publicitaire. La seule donnée personnelle que nous pouvons collecter est un <strong>numéro de téléphone que vous pouvez fournir de façon optionnelle</strong> pendant l'onboarding, pour qu'on puisse vous contacter et recueillir votre avis pendant que Gallus débute — vous pouvez passer cette étape (voir la section 2.1). Sinon, nous utilisons uniquement un service d'<strong>analytics produit anonymes</strong> (PostHog, hébergé en Europe) pour comprendre comment l'application est utilisée — voir la section 2.4.</p>
 
     <h2>1. Responsable du traitement</h2>
     <p>Le responsable du traitement des données est <strong>Gallus</strong>, dont l'email de contact est : <a href="mailto:contact@gallus-app.com">contact@gallus-app.com</a></p>
@@ -24,9 +24,10 @@
 
     <h2>2. Données collectées</h2>
 
-    <h3>2.1 Pas de compte utilisateur, pas de données personnellement identifiables</h3>
-    <p>Gallus <strong>ne dispose d'aucun système de compte utilisateur</strong>. Nous ne demandons ni nom, ni email, ni numéro de téléphone, ni aucune donnée d'identité. Aucune donnée personnellement identifiable n'est transmise à des serveurs.</p>
-    <p>Les seules données transmises hors de votre appareil sont des <strong>événements d'usage anonymes</strong> envoyés à notre service d'analytics produit (voir 2.4) et les informations strictement nécessaires aux paiements in-app gérés par Apple/Google et RevenueCat (voir section 4).</p>
+    <h3>2.1 Pas de compte utilisateur — une donnée de contact optionnelle</h3>
+    <p>Gallus <strong>ne dispose d'aucun système de compte utilisateur</strong>. Nous ne demandons ni nom, ni email, ni aucune donnée d'identité, et aucune information de ce type n'est transmise à des serveurs.</p>
+    <p>Pendant l'onboarding, nous demandons — de façon <strong>optionnelle</strong> — votre <strong>numéro de téléphone</strong>. C'est la seule donnée personnelle que Gallus collecte. Vous pouvez <strong>passer cette étape</strong> et continuer à utiliser l'application normalement. Si vous le fournissez, nous l'utilisons dans un seul but : vous <strong>contacter (généralement via WhatsApp)</strong> pour recueillir votre avis et nous aider à améliorer Gallus dans cette phase de démarrage. Nous ne le <strong>vendons jamais</strong>, ne l'utilisons jamais à des fins publicitaires, et vous pouvez nous demander de le supprimer ou d'arrêter de vous contacter à tout moment (voir sections 9 et 15).</p>
+    <p>En dehors de ce numéro de téléphone optionnel, les seules données transmises hors de votre appareil sont des <strong>événements d'usage anonymes</strong> envoyés à notre service d'analytics produit (voir 2.4) et les informations strictement nécessaires aux paiements in-app gérés par Apple/Google et RevenueCat (voir section 4).</p>
 
     <h3>2.2 Données stockées localement sur votre appareil</h3>
     <p>L'application stocke les éléments suivants <strong>uniquement sur votre appareil</strong>, dans la zone de stockage privée de l'application :</p>
@@ -105,7 +106,8 @@
     </table>
 
     <h3>2.4 Analytics produit anonymes (PostHog)</h3>
-    <p>Gallus utilise <strong>PostHog</strong> (hébergé en Europe, <code>eu.i.posthog.com</code>) pour comprendre comment l'application est utilisée et l'améliorer. PostHog reçoit des événements anonymes liés à un <strong>identifiant aléatoire généré localement</strong> sur votre appareil. Cet identifiant n'est rattaché à aucune information d'identité.</p>
+    <p>Gallus utilise <strong>PostHog</strong> (hébergé en Europe, <code>eu.i.posthog.com</code>) pour comprendre comment l'application est utilisée et l'améliorer. PostHog reçoit des événements anonymes liés à un <strong>identifiant aléatoire généré localement</strong> sur votre appareil. Par défaut, cet identifiant n'est rattaché à aucune information d'identité.</p>
+    <p>Si vous choisissez de fournir votre numéro de téléphone (section 2.1), il est rattaché à votre profil PostHog comme <strong>propriété de contact</strong> afin que nous puissions vous écrire pour recueillir votre avis. Dans ce cas, votre profil analytics <strong>n'est plus anonyme</strong>. Si vous passez cette étape, votre profil reste anonyme.</p>
     <table>
       <thead>
         <tr>
@@ -118,6 +120,7 @@
           <td>
             <ul>
               <li>Ouvertures de l'application (lifecycle)</li>
+              <li>Numéro de téléphone — <strong>uniquement si vous choisissez de le fournir</strong> (section 2.1), stocké comme propriété de contact</li>
               <li>Écrans visités dans l'onboarding (étapes, abandons)</li>
               <li>Vue du paywall et choix de l'offre (mensuel/annuel)</li>
               <li>Tentatives d'achat (réussies, annulées, échouées) — sans détail de paiement</li>
@@ -139,7 +142,7 @@
         </tr>
       </tbody>
     </table>
-    <p>Ces données servent uniquement à des fins d'<strong>analytics produit</strong> (par ex. identifier les points de friction dans l'onboarding). Elles ne sont jamais utilisées pour de la publicité ni partagées avec des tiers à des fins commerciales. Le manifeste de confidentialité de l'application (<em>PrivacyInfo.xcprivacy</em>) déclare formellement à Apple ces collectes comme <em>Product Interaction</em>, <em>Other Usage Data</em>, <em>Purchase History</em> et <em>User ID</em> — toutes marquées <em>Linked to User = false</em> et <em>Used for Tracking = false</em>.</p>
+    <p>Ces données servent uniquement à des fins d'<strong>analytics produit</strong> (par ex. identifier les points de friction dans l'onboarding). Elles ne sont jamais utilisées pour de la publicité ni partagées avec des tiers à des fins commerciales. Le manifeste de confidentialité de l'application (<em>PrivacyInfo.xcprivacy</em>) déclare formellement à Apple ces collectes analytics comme <em>Product Interaction</em>, <em>Other Usage Data</em>, <em>Purchase History</em> et <em>User ID</em> — toutes marquées <em>Linked to User = false</em> et <em>Used for Tracking = false</em>. Le numéro de téléphone optionnel (section 2.1), lorsque vous le fournissez, est déclaré séparément comme <em>Phone Number</em> (Contact Info), <em>Linked to User = true</em>, utilisé <em>uniquement pour vous contacter</em> et <em>jamais pour du tracking</em>.</p>
     <p>Politique de PostHog : <a href="https://posthog.com/privacy" target="_blank" rel="noopener noreferrer">posthog.com/privacy</a></p>
 
     <h2>3. Reconnaissance vocale</h2>
@@ -170,13 +173,15 @@
       <li><strong>Apple</strong> (iOS, AlarmKit, Speech, App Store, notifications APNs, In-App Purchase).</li>
       <li><strong>Google</strong> (Android, Speech, Play Billing, notifications FCM — pour la version Android à venir).</li>
       <li><strong>RevenueCat</strong> (vérification de l'état d'abonnement uniquement). Voir section 4.</li>
-      <li><strong>PostHog</strong> (analytics produit anonymes, hébergement en Europe). Voir section 2.4.</li>
+      <li><strong>PostHog</strong> (analytics produit, hébergement en Europe ; stocke aussi votre numéro de téléphone comme propriété de contact si vous le fournissez). Voir section 2.4.</li>
+      <li><strong>Meta / WhatsApp</strong> — <strong>uniquement si vous avez fourni votre numéro de téléphone</strong> (section 2.1). Nous utilisons WhatsApp pour vous contacter et recueillir votre avis ; votre numéro est alors traité par Meta selon ses propres conditions.</li>
       <li><strong>Expo / React Native</strong> (framework de développement). Gallus n'utilise pas Expo Updates de manière à transmettre des données utilisateur.</li>
     </ul>
     <p><strong>Nous ne vendons jamais vos données.</strong></p>
 
     <h2>7. Durée de conservation</h2>
     <p>Toutes vos données sont conservées localement <strong>tant que l'application est installée</strong>. Pour tout supprimer, désinstallez Gallus : iOS et Android effacent automatiquement le stockage privé de l'application.</p>
+    <p>Si vous avez fourni votre numéro de téléphone (section 2.1), il est conservé sur notre profil PostHog jusqu'à ce que vous demandiez sa suppression. La désinstallation de l'application ne le supprime pas automatiquement — écrivez-nous à <a href="mailto:contact@gallus-app.com">contact@gallus-app.com</a> et nous l'effacerons.</p>
     <p>L'historique d'achat est conservé par Apple ou Google selon leur politique respective, indépendamment de Gallus.</p>
 
     <h2>8. Sécurité</h2>
@@ -206,7 +211,7 @@
         </tr>
         <tr>
           <td>Effacement</td>
-          <td>Désinstallez l'application : toutes les données locales sont effacées par le système. Pour demander l'effacement des événements anonymes envoyés à PostHog associés à votre identifiant local, contactez-nous à <a href="mailto:contact@gallus-app.com">contact@gallus-app.com</a>.</td>
+          <td>Désinstallez l'application : toutes les données locales sont effacées par le système. Pour demander l'effacement des événements envoyés à PostHog associés à votre identifiant local — <strong>y compris votre numéro de téléphone si vous l'avez fourni</strong> — contactez-nous à <a href="mailto:contact@gallus-app.com">contact@gallus-app.com</a>.</td>
         </tr>
         <tr>
           <td>Portabilité</td>
@@ -214,7 +219,7 @@
         </tr>
         <tr>
           <td>Opposition / retrait du consentement</td>
-          <td>Révoquez les permissions (microphone, notifications) dans les Réglages système. Pour vous opposer à la collecte d'analytics anonymes, contactez-nous à <a href="mailto:contact@gallus-app.com">contact@gallus-app.com</a>.</td>
+          <td>Révoquez les permissions (microphone, notifications) dans les Réglages système. Pour vous opposer à la collecte d'analytics, ou pour <strong>nous demander d'arrêter de vous contacter</strong> sur le numéro que vous avez fourni, contactez-nous à <a href="mailto:contact@gallus-app.com">contact@gallus-app.com</a>.</td>
         </tr>
       </tbody>
     </table>
