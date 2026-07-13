@@ -14,7 +14,7 @@
   <div class="container">
     <a href="../../fr/terms/" class="lang-switch">Version française</a>
     <h1>Terms & Conditions</h1>
-    <p class="updated">Last updated: June 7, 2026</p>
+    <p class="updated">Last updated: July 13, 2026</p>
 
     <h2>1. About the application</h2>
     <p><strong>Gallus</strong> is a mobile alarm application that requires the user to speak an engagement phrase out loud to dismiss the alarm. The goal is to turn getting up into an active decision rather than a reflex.</p>
@@ -34,7 +34,7 @@
     <h3>3.1 Technical requirements</h3>
     <p>To use Gallus you need:</p>
     <ul>
-      <li>A compatible device: <strong>iOS 26 or later</strong> (the alarm mechanism relies on AlarmKit, introduced in iOS 26). The Android version will be released later.</li>
+      <li>A compatible device: <strong>iOS 26.1 or later</strong> (the alarm mechanism relies on AlarmKit, introduced in iOS 26). The Android version will be released later.</li>
       <li>An internet connection to download the app and activate your subscription (day-to-day usage is mostly offline).</li>
       <li>Authorization for microphone, speech recognition, and notifications for the full experience.</li>
     </ul>
@@ -61,6 +61,7 @@
       <li><strong>Android:</strong> Play Store &gt; Profile &gt; Payments &amp; subscriptions &gt; Subscriptions &gt; Gallus.</li>
     </ul>
     <p>Cancellation takes effect at the end of the current period. No prorated refund is issued by Gallus; refunds are governed exclusively by Apple and Google policies.</p>
+    <p>When you ask to cancel from the app's Settings, we show you a <strong>short optional survey</strong> about why you are leaving, before redirecting you to the store's cancellation page. Answering it is <strong>in no way mandatory</strong> and <strong>neither conditions nor delays your cancellation</strong>, which happens entirely at Apple or Google. Any answers are handled as described in section 2.6 of our Privacy Policy.</p>
     <h3>4.6 Right of withdrawal</h3>
     <p>For users in the EU/EEA, by downloading and using the application you expressly request immediate performance and acknowledge losing your 14-day right of withdrawal as soon as the first alarm is effectively triggered (Article L.221-28 of the French Consumer Code).</p>
 
@@ -75,9 +76,10 @@
     </ul>
     <p><strong>Do not use Gallus as your only alarm for critical situations</strong> (flights, exams, medical appointments, on-call shifts, etc.). For any critical situation, set an independent backup alarm. By using the application, you acknowledge that Gallus cannot be held liable for any delay, missed event, or lost opportunity resulting from a failure to trigger an alarm.</p>
 
-    <h2>6. No user account</h2>
-    <p>Gallus requires no account creation. The user's identity is not requested. A local anonymous identifier (UUID) is generated for subscription operation (RevenueCat); it contains no personal information.</p>
-    <p>During onboarding, Gallus may ask for your phone number. Providing it is <strong>optional</strong> — you can skip the step and use the app normally. If you provide it, we use it solely to contact you (typically via WhatsApp) for product feedback during this early phase. See section 2.1 of our Privacy Policy.</p>
+    <h2>6. No user account, but an anonymous identifier</h2>
+    <p>Gallus requires <strong>no account creation</strong>: no sign-up, no password, no email. The user's identity is never requested.</p>
+    <p>On first launch, the app automatically opens an <strong>anonymous session</strong> with our hosting provider (Supabase) and generates a <strong>random technical identifier</strong> (UUID). This identifier contains no personal information. It is used to operate the subscription (RevenueCat), to record the technical and diagnostic data needed for alarm reliability, and to tie your server-side data together. These data are detailed in section 2.5 of our Privacy Policy.</p>
+    <p>During onboarding, Gallus may ask for your phone number. Providing it is <strong>optional</strong>: you can skip the step and use the app normally. If you provide it, we use it solely to contact you (typically via WhatsApp) for product feedback during this early phase. See section 2.1 of our Privacy Policy.</p>
 
     <h2>7. Use of the application</h2>
     <h3>7.1 Personal use</h3>
@@ -118,11 +120,12 @@
     <ul>
       <li><strong>Apple:</strong> AlarmKit, Speech, App Store, APNs notifications, In-App Purchase.</li>
       <li><strong>Google:</strong> Speech, Play Billing, FCM notifications (Android coming soon).</li>
+      <li><strong>Supabase:</strong> hosting of our database and anonymous authentication, in the European Union.</li>
       <li><strong>RevenueCat:</strong> subscription state verification.</li>
       <li><strong>PostHog:</strong> anonymous product analytics, EU-hosted (<code>eu.i.posthog.com</code>).</li>
-      <li><strong>Expo / React Native:</strong> development framework.</li>
+      <li><strong>Expo / React Native:</strong> development framework and push notification service.</li>
     </ul>
-    <p>Use of these services is subject to their own terms and privacy policies. For details on the data exchanged with each of them, see the Privacy Policy (Article 11).</p>
+    <p>Use of these services is subject to their own terms and privacy policies. For details on the data exchanged with each of them, see the Privacy Policy (Article 6).</p>
 
     <h2>13. Limitation of liability</h2>
     <h3>13.1 As-is provision</h3>
@@ -139,7 +142,7 @@
 
     <h2>15. Termination</h2>
     <h3>15.1 By the user</h3>
-    <p>You can stop using the application at any time. To erase all local data, uninstall the application: iOS and Android wipe the private storage automatically.</p>
+    <p>You can stop using the application at any time. To erase your local data, uninstall the application: iOS and Android wipe the private storage automatically. Uninstalling <strong>does not erase</strong> the data held on our servers; to have it deleted, email us at <a href="mailto:contact@gallus-app.com">contact@gallus-app.com</a> (see Article 7 of the Privacy Policy).</p>
     <p>To cancel your subscription, see section 4.5.</p>
     <h3>15.2 By Gallus</h3>
     <p>We reserve the right to suspend or terminate your access in case of breach of these T&C, without notice or compensation.</p>

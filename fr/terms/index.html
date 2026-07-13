@@ -14,7 +14,7 @@
   <div class="container">
     <a href="../../en/terms/" class="lang-switch">English version</a>
     <h1>Conditions Générales d'Utilisation</h1>
-    <p class="updated">Dernière mise à jour : 7 juin 2026</p>
+    <p class="updated">Dernière mise à jour : 13 juillet 2026</p>
 
     <h2>1. Présentation de l'application</h2>
     <p><strong>Gallus</strong> est une application mobile de réveil qui demande à l'utilisateur de prononcer à voix haute une phrase d'engagement pour éteindre l'alarme. L'objectif est de transformer l'acte de se lever en décision active plutôt qu'en geste réflexe.</p>
@@ -34,7 +34,7 @@
     <h3>3.1 Conditions techniques</h3>
     <p>Pour utiliser Gallus, vous devez disposer :</p>
     <ul>
-      <li>D'un appareil compatible : <strong>iOS 26 ou supérieur</strong> (le mécanisme d'alarme repose sur AlarmKit, introduit avec iOS 26). La version Android sera proposée ultérieurement.</li>
+      <li>D'un appareil compatible : <strong>iOS 26.1 ou supérieur</strong> (le mécanisme d'alarme repose sur AlarmKit, introduit avec iOS 26). La version Android sera proposée ultérieurement.</li>
       <li>D'une connexion internet pour télécharger l'application et activer votre abonnement (le fonctionnement quotidien est essentiellement hors-ligne).</li>
       <li>D'autoriser le microphone, la reconnaissance vocale et les notifications pour bénéficier de l'expérience complète.</li>
     </ul>
@@ -61,6 +61,7 @@
       <li><strong>Android :</strong> Play Store &gt; Profil &gt; Paiements et abonnements &gt; Abonnements &gt; Gallus.</li>
     </ul>
     <p>La résiliation prend effet à la fin de la période en cours. Aucun remboursement au prorata n'est effectué par Gallus ; les remboursements relèvent exclusivement des politiques d'Apple et de Google.</p>
+    <p>Lorsque vous demandez à résilier depuis les Réglages de l'application, nous vous présentons un <strong>court sondage facultatif</strong> sur la raison de votre départ, avant de vous rediriger vers la page de résiliation de la boutique. Y répondre n'est <strong>en aucun cas obligatoire</strong> et <strong>ne conditionne ni ne retarde votre résiliation</strong>, laquelle s'effectue intégralement chez Apple ou Google. Les réponses éventuelles sont traitées selon la section 2.6 de notre Politique de confidentialité.</p>
     <h3>4.6 Droit de rétractation</h3>
     <p>Conformément à l'article L.221-28 du Code de la consommation, en téléchargeant et en utilisant l'application, vous demandez expressément que la prestation commence immédiatement et reconnaissez perdre votre droit de rétractation de 14 jours dès le premier déclenchement effectif d'une alarme.</p>
 
@@ -75,9 +76,10 @@
     </ul>
     <p><strong>N'utilisez pas Gallus comme unique réveil pour une situation à enjeu critique</strong> (vol, examen, rendez-vous médical, prise de garde, etc.). Pour toute situation critique, prévoyez un second réveil indépendant. En utilisant l'application, vous reconnaissez que Gallus ne peut être tenu pour responsable d'un retard, d'un manquement ou d'une perte d'opportunité résultant d'un défaut de déclenchement de l'alarme.</p>
 
-    <h2>6. Pas de compte utilisateur</h2>
-    <p>Gallus ne nécessite aucune création de compte. L'identité de l'utilisateur n'est pas demandée. Un identifiant anonyme local (UUID) est généré pour le fonctionnement de l'abonnement (RevenueCat) ; il ne contient aucune information personnelle.</p>
-    <p>Pendant l'onboarding, Gallus peut vous demander votre numéro de téléphone. Le fournir est <strong>optionnel</strong> — vous pouvez passer l'étape et utiliser l'application normalement. Si vous le fournissez, nous l'utilisons uniquement pour vous contacter (généralement via WhatsApp) afin de recueillir votre avis pendant cette phase de démarrage. Voir la section 2.1 de notre Politique de confidentialité.</p>
+    <h2>6. Pas de compte utilisateur, mais un identifiant anonyme</h2>
+    <p>Gallus ne nécessite <strong>aucune création de compte</strong> : ni inscription, ni mot de passe, ni email. L'identité de l'utilisateur n'est jamais demandée.</p>
+    <p>Au premier lancement, l'application ouvre automatiquement une <strong>session anonyme</strong> auprès de notre hébergeur (Supabase) et génère un <strong>identifiant technique aléatoire</strong> (UUID). Cet identifiant ne contient aucune information personnelle. Il permet de faire fonctionner l'abonnement (RevenueCat), d'enregistrer les données techniques et de diagnostic nécessaires à la fiabilité des alarmes, et de rattacher entre elles vos données côté serveur. Le détail de ces données figure à la section 2.5 de notre Politique de confidentialité.</p>
+    <p>Pendant l'onboarding, Gallus peut vous demander votre numéro de téléphone. Le fournir est <strong>optionnel</strong> : vous pouvez passer l'étape et utiliser l'application normalement. Si vous le fournissez, nous l'utilisons uniquement pour vous contacter (généralement via WhatsApp) afin de recueillir votre avis pendant cette phase de démarrage. Voir la section 2.1 de notre Politique de confidentialité.</p>
 
     <h2>7. Utilisation de l'application</h2>
     <h3>7.1 Usage personnel</h3>
@@ -118,11 +120,12 @@
     <ul>
       <li><strong>Apple :</strong> AlarmKit, Speech, App Store, notifications APNs, In-App Purchase.</li>
       <li><strong>Google :</strong> Speech, Play Billing, notifications FCM (Android à venir).</li>
+      <li><strong>Supabase :</strong> hébergement de notre base de données et de l'authentification anonyme, dans l'Union européenne.</li>
       <li><strong>RevenueCat :</strong> vérification de l'état d'abonnement.</li>
       <li><strong>PostHog :</strong> analytics produit anonymes, hébergement en Europe (<code>eu.i.posthog.com</code>).</li>
-      <li><strong>Expo / React Native :</strong> framework de développement.</li>
+      <li><strong>Expo / React Native :</strong> framework de développement et service de notifications push.</li>
     </ul>
-    <p>L'utilisation de ces services est soumise à leurs propres conditions et politiques de confidentialité. Pour le détail des données échangées avec chacun d'eux, voir la Politique de confidentialité (article 11).</p>
+    <p>L'utilisation de ces services est soumise à leurs propres conditions et politiques de confidentialité. Pour le détail des données échangées avec chacun d'eux, voir la Politique de confidentialité (article 6).</p>
 
     <h2>13. Limitation de responsabilité</h2>
     <h3>13.1 Fourniture en l'état</h3>
@@ -139,7 +142,7 @@
 
     <h2>15. Résiliation</h2>
     <h3>15.1 Par l'utilisateur</h3>
-    <p>Vous pouvez à tout moment cesser d'utiliser l'application. Pour effacer toutes vos données locales, désinstallez l'application : iOS et Android effacent automatiquement le stockage privé.</p>
+    <p>Vous pouvez à tout moment cesser d'utiliser l'application. Pour effacer vos données locales, désinstallez l'application : iOS et Android effacent automatiquement le stockage privé. La désinstallation <strong>n'efface pas</strong> les données conservées sur nos serveurs ; pour en obtenir la suppression, écrivez-nous à <a href="mailto:contact@gallus-app.com">contact@gallus-app.com</a> (voir l'article 7 de la Politique de confidentialité).</p>
     <p>Pour résilier votre abonnement, voir l'article 4.5.</p>
     <h3>15.2 Par Gallus</h3>
     <p>Nous nous réservons le droit de suspendre ou résilier votre accès à l'application en cas de violation des présentes CGU, sans préavis ni indemnité.</p>

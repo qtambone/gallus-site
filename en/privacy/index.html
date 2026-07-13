@@ -14,22 +14,23 @@
   <div class="container">
     <a href="../../fr/privacy/" class="lang-switch">Version française</a>
     <h1>Privacy</h1>
-    <p class="updated">Last updated: June 7, 2026</p>
+    <p class="updated">Last updated: July 13, 2026</p>
     <p class="intro">We take the protection of your personal data seriously. This privacy policy explains how the <strong>Gallus</strong> application collects, uses, shares, and protects information when you use it. It applies to all <strong>Gallus</strong> users, regardless of where you reside.</p>
-    <p class="intro"><strong>In short:</strong> Gallus runs mostly on your device. No user account, no advertising tracking. The only personal data we may collect is a <strong>phone number you can optionally provide</strong> during onboarding, so we can reach out for feedback while Gallus is young — you can skip it (see section 2.1). Otherwise, we only use an <strong>anonymous product analytics</strong> service (PostHog, hosted in Europe) to understand how the app is used — see section 2.4.</p>
+    <p class="intro"><strong>In short:</strong> Gallus works with <strong>no user account</strong> and no advertising tracking whatsoever. The things that are most personal to you <strong>never leave your device</strong>: the content of your engagement phrases, your voice, your voice transcripts, your motivation photo, and your favorite quote (see sections 2.2 and 3). That said, Gallus <strong>does have servers</strong> (Supabase, hosted in the European Union) where we record <strong>technical data tied to an anonymous identifier</strong>: your alarm settings, usage and diagnostic events, and subscription state (see section 2.5). Two pieces of personal data may be added to it, both <strong>optional</strong>: a <strong>phone number</strong> you may provide during onboarding so we can gather your feedback (section 2.1), and the <strong>free-text comment</strong> you may write if you cancel your subscription (section 2.6).</p>
 
     <h2>1. Data Controller</h2>
     <p>The data controller is <strong>Gallus</strong>, based in France. Contact: <a href="mailto:contact@gallus-app.com">contact@gallus-app.com</a></p>
 
     <h2>2. Data Collected</h2>
 
-    <h3>2.1 No user account — one optional piece of contact data</h3>
-    <p>Gallus provides <strong>no user account system</strong>. We do not ask for your name, email, or any identity data, and no such information is transmitted to any server.</p>
-    <p>During onboarding, we do ask — <strong>optionally</strong> — for your <strong>phone number</strong>. This is the only piece of personal data Gallus collects. You can <strong>skip this step</strong> and keep using the app normally. If you choose to provide it, we use it for a single purpose: to <strong>contact you (typically via WhatsApp)</strong> to gather feedback and help us improve Gallus during this early phase. We <strong>never sell it</strong>, never use it for advertising, and you can ask us to delete it or to stop contacting you at any time (see sections 9 and 15).</p>
-    <p>Apart from this optional phone number, the only data leaving your device is <strong>anonymous usage events</strong> sent to our product analytics service (see 2.4) and the information strictly required for in-app payments handled by Apple/Google and RevenueCat (see section 4).</p>
+    <h3>2.1 No user account, but an anonymous identifier</h3>
+    <p>Gallus provides <strong>no user account system</strong>: no sign-up, no password. We do not ask for your name, email, or any identity data.</p>
+    <p>On first launch, the app automatically opens an <strong>anonymous session</strong> on our server. It generates a <strong>random technical identifier</strong> (a UUID) that contains no information about you and is not linked to any identity. That identifier, and nothing else, is what ties together the data described in section 2.5. This data is <strong>pseudonymous</strong>: it cannot identify you by name, but it does constitute personal data under the GDPR, and you have all your rights over it (section 9).</p>
+    <p>During onboarding, we also ask, on a <strong>strictly optional</strong> basis, for your <strong>phone number</strong>. You can <strong>skip this step</strong> and keep using the app normally. If you choose to provide it, we use it for a single purpose: to <strong>contact you (typically via WhatsApp)</strong> to gather feedback and help us improve Gallus during this early phase. It is then stored in two places: on our server (section 2.5) and as a contact property in our analytics tool (section 2.4). We <strong>never sell it</strong>, never use it for advertising, and you can ask us to delete it or to stop contacting you at any time (see sections 9 and 15).</p>
+    <p>Providing your phone number is the only act that <strong>lifts the pseudonymity</strong>: without it, we have no way of knowing who you are.</p>
 
-    <h3>2.2 Data stored locally on your device</h3>
-    <p>The application stores the following data <strong>only on your device</strong>, in the application's private sandbox:</p>
+    <h3>2.2 Data that never leaves your device</h3>
+    <p>The following is stored <strong>only on your device</strong>, in the application's private sandbox. It is <strong>never</strong> sent to our servers, nor to any third party:</p>
     <table>
       <thead>
         <tr>
@@ -39,11 +40,7 @@
       </thead>
       <tbody>
         <tr>
-          <td>Your alarms (time, days, label, sound)</td>
-          <td>Schedule alarm triggers</td>
-        </tr>
-        <tr>
-          <td>Your custom engagement phrases</td>
+          <td><strong>The content of your engagement phrases</strong> (both the catalog ones and the ones you write)</td>
           <td>Voice challenge to dismiss the alarm</td>
         </tr>
         <tr>
@@ -55,16 +52,15 @@
           <td>Personalized display during the challenge</td>
         </tr>
         <tr>
-          <td>Preferences (theme, language, vibration)</td>
+          <td>Display preferences (theme, vibration)</td>
           <td>App personalization</td>
-        </tr>
-        <tr>
-          <td>Subscription state (RevenueCat local cache)</td>
-          <td>Verify access to features</td>
         </tr>
       </tbody>
     </table>
-    <p>This data stays on your device. It is removed when you uninstall the application.</p>
+    <p>Two nuances, to be exact: your device's <strong>language</strong> is part of the technical profile sent to our servers (section 2.5), and your <strong>subscription state</strong> is cached locally but also exists server-side (sections 2.5 and 4). Neither says anything about your identity.</p>
+    <p>This data is removed when you uninstall the application.</p>
+    <p><strong>One exception to be aware of:</strong> the <strong>name you give an alarm</strong> (its label, e.g. "Work wake-up") is free text, and it <strong>is</strong> sent to our servers along with the rest of the alarm's settings (section 2.5).</p>
+    <p>In total, the app has only <strong>three free-text fields whose content leaves your device</strong>: the alarm label, the "Other" answer to the "how did you hear about Gallus?" onboarding question, and the optional comment in the cancellation survey (section 2.6). Avoid entering sensitive information in them. Your engagement phrases are in none of these cases: they stay on the device.</p>
 
     <h3>2.3 Required system permissions</h3>
     <table>
@@ -121,8 +117,11 @@
               <li>App opens (lifecycle)</li>
               <li>Phone number — <strong>only if you choose to provide it</strong> (section 2.1), stored as a contact property</li>
               <li>Onboarding screens visited (steps, drop-offs)</li>
+              <li>How you heard about Gallus, including the text you type if you answer "Other"</li>
               <li>Paywall view and plan selection (monthly/yearly)</li>
               <li>Purchase attempts (succeeded, cancelled, failed) — no payment details</li>
+              <li>Phrase creation and deletion (counts only, <strong>never their content</strong>)</li>
+              <li>Cancellation survey opened and reason selected (section 2.6). The free-text comment is <em>not</em> sent to PostHog</li>
               <li>Device type, iOS version, device language</li>
               <li>Installed app version</li>
             </ul>
@@ -132,7 +131,8 @@
               <li>Name, email, profile picture — you don't enter any of these in the app</li>
               <li>Geo-precise IP address (PostHog truncates the IP)</li>
               <li>IDFA / advertising identifier</li>
-              <li>Content of your engagement phrases or alarms</li>
+              <li>The content of your engagement phrases</li>
+              <li>Your alarm labels (they do go to our servers, section 2.5, but not to PostHog)</li>
               <li>Recorded audio or voice challenge transcripts</li>
               <li>Motivation photo</li>
               <li>Payment information</li>
@@ -144,13 +144,65 @@
     <p>This data is used solely for <strong>product analytics</strong> (e.g., identifying friction points in onboarding). It is never used for advertising or shared with third parties for commercial purposes. The app's privacy manifest (<em>PrivacyInfo.xcprivacy</em>) formally declares these analytics collections to Apple as <em>Product Interaction</em>, <em>Other Usage Data</em>, <em>Purchase History</em>, and <em>User ID</em> — all marked <em>Linked to User = false</em> and <em>Used for Tracking = false</em>. The optional phone number (section 2.1), when you provide it, is declared separately as <em>Phone Number</em> (Contact Info), <em>Linked to User = true</em>, used <em>only to contact you</em> and <em>never for tracking</em>.</p>
     <p>PostHog's policy: <a href="https://posthog.com/privacy" target="_blank" rel="noopener noreferrer">posthog.com/privacy</a></p>
 
+    <h3>2.5 Data sent to our servers (Supabase)</h3>
+    <p>Gallus relies on a database hosted with <strong>Supabase</strong>, in the <strong>European Union</strong>. All the data below is tied to the <strong>anonymous identifier</strong> described in section 2.1, not to your identity. It serves three purposes: <strong>running the subscription</strong>, <strong>diagnosing alarms that fail to ring</strong> (the most serious risk for an alarm app), and <strong>improving the product</strong>.</p>
+    <table>
+      <thead>
+        <tr>
+          <th>Data</th>
+          <th>Content</th>
+          <th>Why</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Technical profile</td>
+          <td>Device model, OS version, app version, language, time zone, permission states (notifications, AlarmKit), push notification token, and your phone number <strong>if you provided one</strong> (section 2.1)</td>
+          <td>Know which devices and versions alarms fail on</td>
+        </tr>
+        <tr>
+          <td>Your alarm settings</td>
+          <td>Time, days, on/off state, sound, volume, phrase mode, the <strong>identifiers</strong> of the associated phrases (never their text), and the alarm <strong>label</strong> (free text)</td>
+          <td>Reproduce and understand trigger failures</td>
+        </tr>
+        <tr>
+          <td>Usage and diagnostic events</td>
+          <td>App opens, screens visited, alarm lifecycle, voice challenge flow (number of attempts, match rate, and the <strong>length</strong> of the transcript, never its text), technical errors and crash traces</td>
+          <td>Detect bugs and friction points</td>
+        </tr>
+        <tr>
+          <td>Diagnostic snapshots</td>
+          <td>A comparison between the alarms stored in the app and those actually scheduled by the iOS system (AlarmKit), to spot discrepancies</td>
+          <td>Fix alarms that don't ring</td>
+        </tr>
+        <tr>
+          <td>Subscription state</td>
+          <td>Plan (monthly/yearly), status (trial, active, expired), period end date. Sent by RevenueCat, with <strong>no payment data whatsoever</strong></td>
+          <td>Verify your access to features</td>
+        </tr>
+        <tr>
+          <td>Cancellation survey</td>
+          <td>See section 2.6</td>
+          <td>Understand why people leave</td>
+        </tr>
+      </tbody>
+    </table>
+    <p>This data is protected by per-row access rules (<em>Row Level Security</em>): from the app, your identifier can only read and write <strong>its own data</strong>, never another user's.</p>
+    <p><strong>Never sent to our servers:</strong> the content of your engagement phrases, your voice, voice challenge transcripts, your motivation photo, your favorite quote, and your payment information.</p>
+    <p>Supabase's policy: <a href="https://supabase.com/privacy" target="_blank" rel="noopener noreferrer">supabase.com/privacy</a></p>
+
+    <h3>2.6 Cancellation survey</h3>
+    <p>If you ask to cancel your subscription from the app's Settings, we show you a short survey before redirecting you to Apple's cancellation page. It asks for <strong>the reason you are leaving</strong> (from a list of choices) and lets you add a <strong>free-text comment</strong> if you wish.</p>
+    <p>Answering is <strong>optional</strong> and has <strong>no bearing</strong> on your cancellation: cancellation happens entirely at Apple, and nothing you answer here can block, delay, or alter it.</p>
+    <p>If you do answer, we store on our servers: the reason selected, your free-text comment <strong>exactly as you wrote it</strong> (up to 500 characters), and your subscription plan plus whether you were in a trial period. All of it is tied to your anonymous identifier. Because this comment is free text, <strong>do not write sensitive information in it</strong>. It is never sent to PostHog or any third party; it is used solely to understand why people cancel.</p>
+
     <h2>3. Speech recognition</h2>
     <p>The voice challenge relies on the operating system's speech recognition:</p>
     <ul>
       <li><strong>iOS:</strong> Apple's <em>Speech</em> framework. Gallus explicitly configures recognition in <strong>100% on-device</strong> mode (<code>requiresOnDeviceRecognition = true</code>). No audio or transcription is sent to Apple's servers. If the requested language is not available on-device, the challenge falls back to keyboard input.</li>
       <li><strong>Android:</strong> Google's speech recognition service (Android version forthcoming). Processing may be on-device or via Google's servers depending on device capabilities. Google is solely responsible for processing audio in this context.</li>
     </ul>
-    <p>Gallus <strong>does not record</strong> your voice, <strong>does not store</strong> transcriptions, and <strong>does not send any audio</strong> to its own servers (we have none). Only the text result returned by the system is locally compared to your engagement phrase, then immediately removed from memory.</p>
+    <p>Gallus <strong>does not record</strong> your voice, <strong>does not store</strong> transcriptions, and <strong>does not send any audio</strong> to its servers. Only the text result returned by the system is locally compared to your engagement phrase, then immediately removed from memory. The only information reported from a voice challenge is <strong>technical measurements</strong>: number of attempts, match percentage, and the <strong>length</strong> of the recognized text. Never the text itself.</p>
     <p>Apple's policy: <a href="https://www.apple.com/legal/privacy/" target="_blank" rel="noopener noreferrer">apple.com/legal/privacy/</a> · Google's policy: <a href="https://policies.google.com/privacy" target="_blank" rel="noopener noreferrer">policies.google.com/privacy</a></p>
 
     <h2>4. Subscription and in-app purchases</h2>
@@ -171,27 +223,30 @@
     <ul>
       <li><strong>Apple</strong> (iOS, AlarmKit, Speech, App Store, APNs notifications, In-App Purchase).</li>
       <li><strong>Google</strong> (Android, Speech, Play Billing, FCM notifications — for the upcoming Android version).</li>
+      <li><strong>Supabase</strong> (hosting of our database and anonymous authentication, in the European Union). See section 2.5.</li>
       <li><strong>RevenueCat</strong> (subscription state verification only). See section 4.</li>
       <li><strong>PostHog</strong> (product analytics, EU-hosted; also stores your phone number as a contact property if you provide it). See section 2.4.</li>
+      <li><strong>Expo</strong> (push notification service: it issues a technical token for your device, which we keep in your profile so we can send you notifications in the future). Today, all of Gallus's notifications are generated <strong>locally</strong> by your device.</li>
       <li><strong>Meta / WhatsApp</strong> — <strong>only if you provided your phone number</strong> (section 2.1). We use WhatsApp to contact you for feedback; your number is then processed by Meta under its own terms.</li>
-      <li><strong>Expo / React Native</strong> (development framework). Gallus does not use Expo Updates in a way that transmits user data.</li>
+      <li><strong>React Native</strong> (development framework). Gallus does not use Expo Updates in a way that transmits user data.</li>
     </ul>
-    <p><strong>We never sell your data.</strong></p>
+    <p><strong>We never sell your data</strong>, and we never share it with advertisers or data brokers.</p>
 
     <h2>7. Retention</h2>
-    <p>All your data is retained locally <strong>as long as the application is installed</strong>. To erase everything, uninstall Gallus: iOS and Android automatically wipe the app's private storage.</p>
-    <p>If you provided your phone number (section 2.1), it is kept on our PostHog profile until you ask us to delete it. Uninstalling the app does not automatically remove it — email us at <a href="mailto:contact@gallus-app.com">contact@gallus-app.com</a> and we will delete it.</p>
+    <p><strong>On your device:</strong> your local data (section 2.2) is retained as long as the application is installed. To erase it all, uninstall Gallus: iOS and Android automatically wipe the app's private storage.</p>
+    <p><strong>On our servers:</strong> the data described in sections 2.5 and 2.6, along with your phone number if you provided one, is retained <strong>until you ask us to delete it</strong>. We do not yet run an automatic purge after a fixed period. Importantly, <strong>uninstalling the app does not delete it</strong>, because it is not stored on your phone. To have it erased, email us at <a href="mailto:contact@gallus-app.com">contact@gallus-app.com</a>: we delete all data associated with your identifier, within 30 days at most.</p>
     <p>Purchase history is kept by Apple or Google according to their respective policies, independently of Gallus.</p>
 
     <h2>8. Security</h2>
     <ul>
       <li>Local data is stored in the app's private sandbox (iOS App Sandbox, Android internal storage), inaccessible to other apps.</li>
-      <li>Communications with Apple, Google, RevenueCat, and PostHog are encrypted (HTTPS/TLS).</li>
+      <li>On our servers, every row is protected by an access rule (<em>Row Level Security</em>): your anonymous identifier can only reach its own data.</li>
+      <li>Communications with Apple, Google, Supabase, RevenueCat, and PostHog are encrypted (HTTPS/TLS).</li>
       <li>No password to protect: there is no account.</li>
     </ul>
 
     <h2>9. Your rights</h2>
-    <p>Since we collect no data on the server side, most GDPR rights are exercised directly within the app:</p>
+    <p>You have the rights guaranteed by the GDPR over all data tied to your anonymous identifier. Some are exercised directly in the app, others on simple request by email:</p>
     <table>
       <thead>
         <tr>
@@ -202,23 +257,23 @@
       <tbody>
         <tr>
           <td>Access</td>
-          <td>All your data is visible inside the application itself.</td>
+          <td>Your local data is visible inside the application itself. To receive a copy of the data held on our servers (sections 2.5 and 2.6), request it at <a href="mailto:contact@gallus-app.com">contact@gallus-app.com</a>.</td>
         </tr>
         <tr>
           <td>Rectification</td>
-          <td>Edit alarms, phrases, and preferences directly in the app.</td>
+          <td>Edit alarms, phrases, and preferences directly in the app. To correct server-side data, email us.</td>
         </tr>
         <tr>
           <td>Erasure</td>
-          <td>Uninstall the app: the OS wipes all local data. To request erasure of the events sent to PostHog associated with your local identifier — <strong>including your phone number if you provided one</strong> — contact us at <a href="mailto:contact@gallus-app.com">contact@gallus-app.com</a>.</td>
+          <td>Uninstall the app: the OS wipes all local data. Uninstalling <strong>does not erase</strong> server-side data. To have all data tied to your identifier deleted (profile, alarms, events, diagnostics, cancellation survey, <strong>and your phone number if you provided one</strong>, both on our servers and at PostHog), contact us at <a href="mailto:contact@gallus-app.com">contact@gallus-app.com</a>.</td>
         </tr>
         <tr>
           <td>Portability</td>
-          <td>Not applicable: no identity data is held by Gallus outside your device.</td>
+          <td>On request at <a href="mailto:contact@gallus-app.com">contact@gallus-app.com</a>, we will send you the data we hold about you on our servers in a machine-readable format.</td>
         </tr>
         <tr>
           <td>Objection / consent withdrawal</td>
-          <td>Revoke permissions (microphone, notifications) in system Settings. To opt out of analytics, or to <strong>stop us from contacting you</strong> on the number you provided, contact us at <a href="mailto:contact@gallus-app.com">contact@gallus-app.com</a>.</td>
+          <td>Revoke permissions (microphone, notifications) in system Settings. To opt out of analytics and diagnostics collection, or to <strong>stop us from contacting you</strong> on the number you provided, contact us at <a href="mailto:contact@gallus-app.com">contact@gallus-app.com</a>.</td>
         </tr>
       </tbody>
     </table>
@@ -231,7 +286,7 @@
     <p>Gallus is intended for users aged 13 or older, in line with app store terms. We do not knowingly collect data from minors. If you believe a minor has provided information, contact us at <a href="mailto:contact@gallus-app.com">contact@gallus-app.com</a>.</p>
 
     <h2>12. International transfers</h2>
-    <p>The anonymous product analytics (PostHog, see 2.4) are hosted <strong>in Europe</strong> (<code>eu.i.posthog.com</code>) — no transfer outside the EU occurs for this collection. Any transfers performed by Apple, Google, or RevenueCat as part of their own services are governed by their respective policies (EU Standard Contractual Clauses, EU-US Data Privacy Framework).</p>
+    <p>Both services that host your data are located in the <strong>European Union</strong>: our database (Supabase, see 2.5) and our product analytics (PostHog, <code>eu.i.posthog.com</code>, see 2.4). No transfer outside the EU occurs for these collections. Any transfers performed by Apple, Google, RevenueCat, or Expo as part of their own services are governed by their respective policies (EU Standard Contractual Clauses, EU-US Data Privacy Framework).</p>
 
     <h2>13. Changes to this policy</h2>
     <p>If we update this policy:</p>
