@@ -14,9 +14,9 @@
   <div class="container">
     <a href="../../fr/privacy/" class="lang-switch">Version française</a>
     <h1>Privacy</h1>
-    <p class="updated">Last updated: July 13, 2026</p>
+    <p class="updated">Last updated: July 29, 2026</p>
     <p class="intro">We take the protection of your personal data seriously. This privacy policy explains how the <strong>Gallus</strong> application collects, uses, shares, and protects information when you use it. It applies to all <strong>Gallus</strong> users, regardless of where you reside.</p>
-    <p class="intro"><strong>In short:</strong> Gallus works with <strong>no user account</strong> and no advertising tracking whatsoever. The things that are most personal to you <strong>never leave your device</strong>: the content of your engagement phrases, your voice, your voice transcripts, your motivation photo, and your favorite quote (see sections 2.2 and 3). That said, Gallus <strong>does have servers</strong> (Supabase, hosted in the European Union) where we record <strong>technical data tied to an anonymous identifier</strong>: your alarm settings, usage and diagnostic events, and subscription state (see section 2.5). Two pieces of personal data may be added to it, both <strong>optional</strong>: a <strong>phone number</strong> you may provide during onboarding so we can gather your feedback (section 2.1), and the <strong>free-text comment</strong> you may write if you cancel your subscription (section 2.6).</p>
+    <p class="intro"><strong>In short:</strong> Gallus works with <strong>no user account</strong> and no advertising tracking whatsoever. The things that are most personal to you <strong>never leave your device</strong>: the content of your engagement phrases, your voice, your voice transcripts, your motivation photo, and your favorite quote (see sections 2.2 and 3). That said, Gallus <strong>does have servers</strong> (Supabase, hosted in the European Union) where we record <strong>technical data tied to an anonymous identifier</strong>: your alarm settings, usage and diagnostic events, and subscription state (see section 2.5). Two pieces of personal data may be added to it, both <strong>optional</strong>: a <strong>phone number</strong> you may provide during onboarding so we can gather your feedback (section 2.1), and the <strong>free-text comment</strong> you may write if you cancel your subscription (section 2.6). Finally, one exception about photos: if you enable "Stronger wake-up" mode, its <strong>photo proof</strong> mission takes a wake-up photo of you that is <strong>sent to an AI service (OpenAI) just long enough to check that you are standing up</strong>, then kept nowhere (section 2.7). It is distinct from your motivation photo, which never leaves your device.</p>
 
     <h2>1. Data Controller</h2>
     <p>The data controller is <strong>Gallus</strong>, based in France. Contact: <a href="mailto:contact@gallus-app.com">contact@gallus-app.com</a></p>
@@ -59,6 +59,7 @@
     </table>
     <p>Two nuances, to be exact: your device's <strong>language</strong> is part of the technical profile sent to our servers (section 2.5), and your <strong>subscription state</strong> is cached locally but also exists server-side (sections 2.5 and 4). Neither says anything about your identity.</p>
     <p>This data is removed when you uninstall the application.</p>
+    <p><strong>Not to be confused with photo proof:</strong> the <strong>motivation photo</strong> above stays on your device and is never sent. It is different from the <strong>wake-up proof photo</strong> in "Stronger wake-up" mode, which is transmitted for analysis at wake-up time without being stored (see section 2.7).</p>
     <p><strong>One exception to be aware of:</strong> the <strong>name you give an alarm</strong> (its label, e.g. "Work wake-up") is free text, and it <strong>is</strong> sent to our servers along with the rest of the alarm's settings (section 2.5).</p>
     <p>In total, the app has only <strong>three free-text fields whose content leaves your device</strong>: the alarm label, the "Other" answer to the "how did you hear about Gallus?" onboarding question, and the optional comment in the cancellation survey (section 2.6). Avoid entering sensitive information in them. Your engagement phrases are in none of these cases: they stay on the device.</p>
 
@@ -96,6 +97,11 @@
           <td>Photo library</td>
           <td>Pick a motivation photo</td>
           <td>No, optional</td>
+        </tr>
+        <tr>
+          <td>Camera</td>
+          <td>Take the "Stronger wake-up" mode proof photo (photo proof mission)</td>
+          <td>No, only if you enable that mission (section 2.7)</td>
         </tr>
       </tbody>
     </table>
@@ -185,16 +191,34 @@
           <td>See section 2.6</td>
           <td>Understand why people leave</td>
         </tr>
+        <tr>
+          <td>"Stronger wake-up" mode (photo proof)</td>
+          <td>Judgment result (standing yes/no, sufficient brightness, pass), the AI model used, response time, image size in bytes, anti-abuse counters, and the <strong>IP address</strong> the call came from. <strong>Never the image itself.</strong> See section 2.7</td>
+          <td>Track the feature's reliability and cost, and prevent abuse</td>
+        </tr>
+        <tr>
+          <td>Wake-up streaks</td>
+          <td>Number of consecutive days you completed your wake-up</td>
+          <td>Show your progress (streak)</td>
+        </tr>
       </tbody>
     </table>
     <p>This data is protected by per-row access rules (<em>Row Level Security</em>): from the app, your identifier can only read and write <strong>its own data</strong>, never another user's.</p>
-    <p><strong>Never sent to our servers:</strong> the content of your engagement phrases, your voice, voice challenge transcripts, your motivation photo, your favorite quote, and your payment information.</p>
+    <p><strong>Never sent to our servers:</strong> the content of your engagement phrases, your voice, voice challenge transcripts, your motivation photo (as distinct from the "Stronger wake-up" mode proof photo, which passes through for analysis without being stored, section 2.7), your favorite quote, and your payment information.</p>
     <p>Supabase's policy: <a href="https://supabase.com/privacy" target="_blank" rel="noopener noreferrer">supabase.com/privacy</a></p>
 
     <h3>2.6 Cancellation survey</h3>
     <p>If you ask to cancel your subscription from the app's Settings, we show you a short survey before redirecting you to Apple's cancellation page. It asks for <strong>the reason you are leaving</strong> (from a list of choices) and lets you add a <strong>free-text comment</strong> if you wish.</p>
     <p>Answering is <strong>optional</strong> and has <strong>no bearing</strong> on your cancellation: cancellation happens entirely at Apple, and nothing you answer here can block, delay, or alter it.</p>
     <p>If you do answer, we store on our servers: the reason selected, your free-text comment <strong>exactly as you wrote it</strong> (up to 500 characters), and your subscription plan plus whether you were in a trial period. All of it is tied to your anonymous identifier. Because this comment is free text, <strong>do not write sensitive information in it</strong>. It is never sent to PostHog or any third party; it is used solely to understand why people cancel.</p>
+
+    <h3>2.7 "Stronger wake-up" mode and photo proof</h3>
+    <p>"Stronger wake-up" mode is <strong>optional</strong> and enabled per alarm. It adds one or more small missions to your wake-up (memory, language exercises, etc.). Almost all of these missions run <strong>entirely on your device</strong> and send no new data. Only one is an exception: the <strong>photo proof</strong> mission.</p>
+    <p>If you enable the photo proof mission, at wake-up time the app asks you to take a <strong>live photo of yourself</strong> (via the camera) to confirm you are standing and out of bed. This photo is <strong>sent to our server (Supabase) and then forwarded to OpenAI</strong>, whose image analysis ("vision") service determines whether you are standing and whether the image is bright enough.</p>
+    <p><strong>What happens to the photo:</strong> it is processed <strong>in flight</strong> and is <strong>kept nowhere</strong>: not on your device (beyond the immediate display after it passes), not on our servers, and not in our analytics. OpenAI acts here as a <strong>technical sub-processor</strong>: it receives the image only for as long as it takes to analyze it and, under its API terms, does <strong>not use it to train its models</strong>. We keep only the <strong>result</strong> of the judgment and technical metadata (see section 2.5), never the image.</p>
+    <p>To prevent abuse of this feature (each analysis has a cost), our server logs the <strong>IP address</strong> the request came from, along with a daily usage counter, tied to your anonymous identifier. An IP address is personal data; it is used solely to rate-limit abusive usage and is never used for advertising.</p>
+    <p>The <strong>Camera permission</strong> (section 2.3) is only requested if you use this mission. If the camera is not authorized or the analysis fails, the mission does not leave you locked at wake-up.</p>
+    <p>OpenAI's policy: <a href="https://openai.com/policies/privacy-policy" target="_blank" rel="noopener noreferrer">openai.com/policies/privacy-policy</a></p>
 
     <h2>3. Speech recognition</h2>
     <p>The voice challenge relies on the operating system's speech recognition:</p>
@@ -226,6 +250,7 @@
       <li><strong>Supabase</strong> (hosting of our database and anonymous authentication, in the European Union). See section 2.5.</li>
       <li><strong>RevenueCat</strong> (subscription state verification only). See section 4.</li>
       <li><strong>PostHog</strong> (product analytics, EU-hosted; also stores your phone number as a contact property if you provide it). See section 2.4.</li>
+      <li><strong>OpenAI</strong> — <strong>only if you enable the "photo proof" mission</strong> of "Stronger wake-up" mode (section 2.7). The wake-up photo is sent to it for analysis, without being retained. OpenAI is located in the United States.</li>
       <li><strong>Expo</strong> (push notification service: it issues a technical token for your device, which we keep in your profile so we can send you notifications in the future). Today, all of Gallus's notifications are generated <strong>locally</strong> by your device.</li>
       <li><strong>Meta / WhatsApp</strong> — <strong>only if you provided your phone number</strong> (section 2.1). We use WhatsApp to contact you for feedback; your number is then processed by Meta under its own terms.</li>
       <li><strong>React Native</strong> (development framework). Gallus does not use Expo Updates in a way that transmits user data.</li>
@@ -286,7 +311,7 @@
     <p>Gallus is intended for users aged 13 or older, in line with app store terms. We do not knowingly collect data from minors. If you believe a minor has provided information, contact us at <a href="mailto:contact@gallus-app.com">contact@gallus-app.com</a>.</p>
 
     <h2>12. International transfers</h2>
-    <p>Both services that host your data are located in the <strong>European Union</strong>: our database (Supabase, see 2.5) and our product analytics (PostHog, <code>eu.i.posthog.com</code>, see 2.4). No transfer outside the EU occurs for these collections. Any transfers performed by Apple, Google, RevenueCat, or Expo as part of their own services are governed by their respective policies (EU Standard Contractual Clauses, EU-US Data Privacy Framework).</p>
+    <p>Our two main hosting services are located in the <strong>European Union</strong>: our database (Supabase, see 2.5) and our product analytics (PostHog, <code>eu.i.posthog.com</code>, see 2.4). However, if you use the <strong>photo proof</strong> mission (section 2.7), the photo is transmitted to <strong>OpenAI, located in the United States</strong>: this processing involves a <strong>transfer outside the EU</strong>. Any transfers performed by OpenAI, Apple, Google, RevenueCat, or Expo as part of their own services are governed by their respective policies and safeguards (EU Standard Contractual Clauses, EU-US Data Privacy Framework).</p>
 
     <h2>13. Changes to this policy</h2>
     <p>If we update this policy:</p>

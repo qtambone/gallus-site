@@ -14,7 +14,7 @@
   <div class="container">
     <a href="../../en/terms/" class="lang-switch">English version</a>
     <h1>Conditions Générales d'Utilisation</h1>
-    <p class="updated">Dernière mise à jour : 13 juillet 2026</p>
+    <p class="updated">Dernière mise à jour : 29 juillet 2026</p>
 
     <h2>1. Présentation de l'application</h2>
     <p><strong>Gallus</strong> est une application mobile de réveil qui demande à l'utilisateur de prononcer à voix haute une phrase d'engagement pour éteindre l'alarme. L'objectif est de transformer l'acte de se lever en décision active plutôt qu'en geste réflexe.</p>
@@ -27,6 +27,8 @@
       <li><strong>Nous / Notre / Gallus :</strong> l'éditeur de l'application Gallus.</li>
       <li><strong>Défi vocal :</strong> mécanisme par lequel l'utilisateur doit prononcer une phrase d'engagement pour éteindre une alarme.</li>
       <li><strong>Alarme en chaîne :</strong> mécanisme de rappels successifs garantissant que l'alarme continue à sonner tant que le défi n'est pas relevé.</li>
+      <li><strong>Mode « Réveil renforcé » :</strong> mode optionnel, activable par alarme, qui ajoute au réveil une ou plusieurs missions supplémentaires (dont la « preuve photo »).</li>
+      <li><strong>Preuve photo :</strong> mission du mode Réveil renforcé demandant une photo de réveil, analysée par un service d'IA tiers pour vérifier que l'utilisateur est bien debout.</li>
       <li><strong>Services :</strong> l'ensemble des fonctionnalités proposées par l'application.</li>
     </ul>
 
@@ -100,6 +102,7 @@
     <h2>8. Reconnaissance vocale et défi de secours</h2>
     <p>Le défi vocal repose sur les services de reconnaissance vocale d'Apple (iOS) et de Google (Android). La précision dépend de la qualité du microphone, du bruit ambiant, de l'accent et de la langue. <strong>Gallus ne garantit pas un taux de reconnaissance parfait.</strong></p>
     <p>Pour ne pas vous laisser bloqué, l'application propose un <strong>défi de secours par clavier</strong> : si la reconnaissance vocale échoue de manière persistante, vous pouvez taper la phrase pour éteindre l'alarme. Ce mécanisme est conçu comme un filet de sécurité ; il n'enlève rien à l'esprit de l'application.</p>
+    <p>Le <strong>mode Réveil renforcé</strong> (optionnel, activable par alarme) ajoute au réveil des missions supplémentaires. La plupart se déroulent sur l'appareil. La mission <strong>preuve photo</strong> requiert la caméra et fait analyser une photo de réveil par un service d'IA tiers (OpenAI) afin de vérifier que vous êtes debout. Comme la reconnaissance vocale, cette analyse n'est pas garantie parfaite et ne vous laisse pas bloqué au réveil si elle échoue ou si la caméra n'est pas autorisée. Le traitement de cette photo est décrit à la section 2.7 de notre Politique de confidentialité.</p>
 
     <h2>9. Propriété intellectuelle</h2>
     <h3>9.1 Éléments de l'application</h3>
@@ -123,6 +126,7 @@
       <li><strong>Supabase :</strong> hébergement de notre base de données et de l'authentification anonyme, dans l'Union européenne.</li>
       <li><strong>RevenueCat :</strong> vérification de l'état d'abonnement.</li>
       <li><strong>PostHog :</strong> analytics produit anonymes, hébergement en Europe (<code>eu.i.posthog.com</code>).</li>
+      <li><strong>OpenAI :</strong> analyse de la photo du mode Réveil renforcé (mission « preuve photo »), uniquement si vous l'activez ; États-Unis. Voir la section 2.7 de la Politique de confidentialité.</li>
       <li><strong>Expo / React Native :</strong> framework de développement et service de notifications push.</li>
     </ul>
     <p>L'utilisation de ces services est soumise à leurs propres conditions et politiques de confidentialité. Pour le détail des données échangées avec chacun d'eux, voir la Politique de confidentialité (article 6).</p>

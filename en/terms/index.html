@@ -14,7 +14,7 @@
   <div class="container">
     <a href="../../fr/terms/" class="lang-switch">Version française</a>
     <h1>Terms & Conditions</h1>
-    <p class="updated">Last updated: July 13, 2026</p>
+    <p class="updated">Last updated: July 29, 2026</p>
 
     <h2>1. About the application</h2>
     <p><strong>Gallus</strong> is a mobile alarm application that requires the user to speak an engagement phrase out loud to dismiss the alarm. The goal is to turn getting up into an active decision rather than a reflex.</p>
@@ -27,6 +27,8 @@
       <li><strong>We / Our / Gallus:</strong> the publisher of the Gallus application.</li>
       <li><strong>Voice challenge:</strong> the mechanism by which the user must speak an engagement phrase to dismiss an alarm.</li>
       <li><strong>Chained alarm:</strong> the mechanism of successive reminders that keeps the alarm ringing until the challenge is completed.</li>
+      <li><strong>"Stronger wake-up" mode:</strong> an optional mode, enabled per alarm, that adds one or more extra missions to your wake-up (including "photo proof").</li>
+      <li><strong>Photo proof:</strong> a "Stronger wake-up" mode mission that requests a wake-up photo, analyzed by a third-party AI service to confirm the user is standing up.</li>
       <li><strong>Services:</strong> all features offered by the application.</li>
     </ul>
 
@@ -100,6 +102,7 @@
     <h2>8. Speech recognition and fallback challenge</h2>
     <p>The voice challenge relies on speech recognition services from Apple (iOS) and Google (Android). Accuracy depends on microphone quality, ambient noise, accent, and language. <strong>Gallus does not guarantee a perfect recognition rate.</strong></p>
     <p>To avoid leaving you locked out, the application provides a <strong>keyboard fallback challenge</strong>: if voice recognition fails persistently, you can type the phrase to dismiss the alarm. This mechanism is a safety net; it does not change the spirit of the application.</p>
+    <p>"Stronger wake-up" mode (optional, enabled per alarm) adds extra missions to your wake-up. Most run on the device. The <strong>photo proof</strong> mission requires the camera and has a wake-up photo analyzed by a third-party AI service (OpenAI) to confirm you are standing up. Like speech recognition, this analysis is not guaranteed to be perfect and does not leave you locked at wake-up if it fails or if the camera is not authorized. How this photo is processed is described in section 2.7 of our Privacy Policy.</p>
 
     <h2>9. Intellectual property</h2>
     <h3>9.1 Application elements</h3>
@@ -123,6 +126,7 @@
       <li><strong>Supabase:</strong> hosting of our database and anonymous authentication, in the European Union.</li>
       <li><strong>RevenueCat:</strong> subscription state verification.</li>
       <li><strong>PostHog:</strong> anonymous product analytics, EU-hosted (<code>eu.i.posthog.com</code>).</li>
+      <li><strong>OpenAI:</strong> analysis of the "Stronger wake-up" mode photo (photo proof mission), only if you enable it; United States. See section 2.7 of the Privacy Policy.</li>
       <li><strong>Expo / React Native:</strong> development framework and push notification service.</li>
     </ul>
     <p>Use of these services is subject to their own terms and privacy policies. For details on the data exchanged with each of them, see the Privacy Policy (Article 6).</p>

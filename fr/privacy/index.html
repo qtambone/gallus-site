@@ -14,9 +14,9 @@
   <div class="container">
     <a href="../../en/privacy/" class="lang-switch">English version</a>
     <h1>Confidentialité</h1>
-    <p class="updated">Dernière mise à jour : 13 juillet 2026</p>
+    <p class="updated">Dernière mise à jour : 29 juillet 2026</p>
     <p class="intro">Nous accordons une grande importance à la protection de vos données personnelles. Cette politique de confidentialité explique comment l'application <strong>Gallus</strong> collecte, utilise, partage et protège les informations lors de son utilisation. Elle s'applique à tous les utilisateurs de <strong>Gallus</strong>, que vous résidiez en France, dans l'Union européenne, aux États-Unis ou dans tout autre pays.</p>
-    <p class="intro"><strong>En résumé :</strong> Gallus fonctionne <strong>sans compte utilisateur</strong> et sans aucun tracking publicitaire. Ce qui vous est le plus personnel <strong>ne quitte jamais votre appareil</strong> : le contenu de vos phrases d'engagement, votre voix, vos transcriptions vocales, votre photo de motivation et votre citation favorite (voir les sections 2.2 et 3). En revanche, Gallus <strong>dispose bien de serveurs</strong> (Supabase, hébergés dans l'Union européenne) sur lesquels nous enregistrons des <strong>données techniques rattachées à un identifiant anonyme</strong> : réglages de vos alarmes, événements d'usage et de diagnostic, état d'abonnement (voir la section 2.5). Deux données personnelles peuvent s'y ajouter, toutes deux <strong>optionnelles</strong> : un <strong>numéro de téléphone</strong> que vous pouvez fournir pendant l'onboarding pour qu'on recueille votre avis (section 2.1), et le <strong>commentaire libre</strong> que vous pouvez écrire si vous résiliez votre abonnement (section 2.6).</p>
+    <p class="intro"><strong>En résumé :</strong> Gallus fonctionne <strong>sans compte utilisateur</strong> et sans aucun tracking publicitaire. Ce qui vous est le plus personnel <strong>ne quitte jamais votre appareil</strong> : le contenu de vos phrases d'engagement, votre voix, vos transcriptions vocales, votre photo de motivation et votre citation favorite (voir les sections 2.2 et 3). En revanche, Gallus <strong>dispose bien de serveurs</strong> (Supabase, hébergés dans l'Union européenne) sur lesquels nous enregistrons des <strong>données techniques rattachées à un identifiant anonyme</strong> : réglages de vos alarmes, événements d'usage et de diagnostic, état d'abonnement (voir la section 2.5). Deux données personnelles peuvent s'y ajouter, toutes deux <strong>optionnelles</strong> : un <strong>numéro de téléphone</strong> que vous pouvez fournir pendant l'onboarding pour qu'on recueille votre avis (section 2.1), et le <strong>commentaire libre</strong> que vous pouvez écrire si vous résiliez votre abonnement (section 2.6). Enfin, une exception à connaître sur les photos : si vous activez le mode « Réveil renforcé », sa mission <strong>preuve photo</strong> prend au réveil une photo de vous qui est <strong>transmise à un service d'IA (OpenAI) le temps de vérifier que vous êtes bien debout</strong>, puis n'est conservée nulle part (section 2.7). Elle est distincte de votre photo de motivation, qui, elle, ne quitte jamais l'appareil.</p>
 
     <h2>1. Responsable du traitement</h2>
     <p>Le responsable du traitement des données est <strong>Gallus</strong>, dont l'email de contact est : <a href="mailto:contact@gallus-app.com">contact@gallus-app.com</a></p>
@@ -60,6 +60,7 @@
     </table>
     <p>Deux nuances, pour être exact : la <strong>langue</strong> de votre appareil fait partie du profil technique envoyé à nos serveurs (section 2.5), et l'<strong>état de votre abonnement</strong> est certes mis en cache localement, mais il existe aussi côté serveur (sections 2.5 et 4). Aucun des deux ne dit quoi que ce soit sur votre identité.</p>
     <p>Ces données sont supprimées lorsque vous désinstallez l'application.</p>
+    <p><strong>À ne pas confondre avec la preuve photo :</strong> la <strong>photo de motivation</strong> ci-dessus reste sur votre appareil et n'est jamais envoyée. Elle est différente de la <strong>photo de preuve de réveil</strong> du mode « Réveil renforcé », qui, elle, est transmise pour analyse au moment du réveil sans être stockée (voir la section 2.7).</p>
     <p><strong>Une exception à connaître :</strong> le <strong>nom que vous donnez à une alarme</strong> (le libellé, par exemple « Réveil boulot ») est du texte libre, et il <strong>est</strong> envoyé à nos serveurs avec les autres réglages de l'alarme (section 2.5).</p>
     <p>Au total, l'application ne comporte que <strong>trois champs de texte libre dont le contenu sort de votre appareil</strong> : le libellé d'alarme, la réponse « Autre » à la question « comment avez-vous connu Gallus ? » posée à l'onboarding, et le commentaire facultatif du sondage de résiliation (section 2.6). Évitez d'y écrire des informations sensibles. Vos phrases d'engagement, elles, ne sont concernées par aucun de ces cas : elles restent sur l'appareil.</p>
 
@@ -97,6 +98,11 @@
           <td>Photothèque</td>
           <td>Sélectionner une photo de motivation</td>
           <td>Non, optionnelle</td>
+        </tr>
+        <tr>
+          <td>Caméra</td>
+          <td>Prendre la photo de preuve du mode « Réveil renforcé » (mission « preuve photo »)</td>
+          <td>Non, uniquement si vous activez cette mission (section 2.7)</td>
         </tr>
       </tbody>
     </table>
@@ -186,16 +192,34 @@
           <td>Voir la section 2.6</td>
           <td>Comprendre pourquoi les gens partent</td>
         </tr>
+        <tr>
+          <td>Mode « Réveil renforcé » (preuve photo)</td>
+          <td>Résultat du jugement (debout oui/non, luminosité suffisante, réussite), modèle d'IA utilisé, temps de réponse, taille de l'image en octets, compteurs anti-abus et l'<strong>adresse IP</strong> à l'origine de l'appel. <strong>Jamais l'image elle-même.</strong> Voir la section 2.7</td>
+          <td>Suivre la fiabilité et le coût de la fonctionnalité, prévenir les abus</td>
+        </tr>
+        <tr>
+          <td>Séries de réveils</td>
+          <td>Nombre de jours consécutifs où vous avez relevé votre réveil</td>
+          <td>Afficher votre progression (« streak »)</td>
+        </tr>
       </tbody>
     </table>
     <p>Ces données sont protégées par des règles d'accès au niveau de chaque ligne (<em>Row Level Security</em>) : depuis l'application, votre identifiant ne peut lire et écrire <strong>que ses propres données</strong>, jamais celles d'un autre utilisateur.</p>
-    <p><strong>Ne sont jamais envoyés à nos serveurs :</strong> le contenu de vos phrases d'engagement, votre voix, les transcriptions du défi vocal, votre photo de motivation, votre citation favorite et vos informations de paiement.</p>
+    <p><strong>Ne sont jamais envoyés à nos serveurs :</strong> le contenu de vos phrases d'engagement, votre voix, les transcriptions du défi vocal, votre photo de motivation (à distinguer de la photo de preuve du mode Réveil renforcé, qui transite pour analyse sans être stockée, section 2.7), votre citation favorite et vos informations de paiement.</p>
     <p>Politique de Supabase : <a href="https://supabase.com/privacy" target="_blank" rel="noopener noreferrer">supabase.com/privacy</a></p>
 
     <h3>2.6 Sondage de résiliation</h3>
     <p>Si vous demandez à résilier votre abonnement depuis les Réglages de l'application, nous vous présentons un court sondage avant de vous rediriger vers la page de résiliation d'Apple. Il vous demande <strong>la raison de votre départ</strong> (dans une liste de choix) et vous laisse, si vous le souhaitez, ajouter un <strong>commentaire libre</strong>.</p>
     <p>Répondre est <strong>facultatif</strong> et n'a <strong>aucune incidence</strong> sur votre résiliation : celle-ci se fait entièrement chez Apple, et rien de ce que vous répondez ici ne peut la bloquer, la retarder ou la modifier.</p>
     <p>Si vous répondez, nous enregistrons sur nos serveurs : la raison choisie, votre commentaire libre <strong>tel que vous l'avez écrit</strong> (jusqu'à 500 caractères), ainsi que votre formule d'abonnement et le fait que vous étiez ou non en période d'essai. Le tout est rattaché à votre identifiant anonyme. Ce commentaire étant du texte libre, <strong>n'y écrivez pas d'informations sensibles</strong>. Il n'est jamais transmis à PostHog ni à aucun tiers ; il sert uniquement à comprendre pourquoi les gens résilient.</p>
+
+    <h3>2.7 Mode « Réveil renforcé » et preuve photo</h3>
+    <p>Le mode <strong>Réveil renforcé</strong> est <strong>optionnel</strong> et s'active alarme par alarme. Il ajoute au réveil une ou plusieurs petites missions (exercices de mémoire, de langage, etc.). La quasi-totalité de ces missions se déroule <strong>entièrement sur votre appareil</strong> et n'envoie aucune donnée nouvelle. Une seule fait exception : la mission <strong>preuve photo</strong>.</p>
+    <p>Si vous activez la mission preuve photo, l'application vous demande, au moment du réveil, de prendre une <strong>photo de vous en direct</strong> (via la caméra) pour vérifier que vous êtes bien debout et hors du lit. Cette photo est <strong>envoyée à notre serveur (Supabase) puis transmise à OpenAI</strong>, dont le service d'analyse d'image (« vision ») détermine si vous êtes debout et si l'image est suffisamment lumineuse.</p>
+    <p><strong>Ce qu'il advient de la photo :</strong> elle est traitée <strong>en vol</strong> et n'est <strong>conservée nulle part</strong> : ni sur votre appareil (au-delà de l'affichage immédiat après validation), ni sur nos serveurs, ni dans nos analytics. OpenAI intervient ici comme <strong>sous-traitant technique</strong> : il reçoit l'image uniquement le temps de l'analyser et, selon ses conditions d'API, ne l'utilise <strong>pas pour entraîner ses modèles</strong>. Nous ne conservons que le <strong>résultat</strong> du jugement et des métadonnées techniques (voir section 2.5), jamais l'image.</p>
+    <p>Pour empêcher les abus de cette fonctionnalité (chaque analyse a un coût), notre serveur journalise l'<strong>adresse IP</strong> à l'origine de la requête ainsi qu'un compteur d'utilisation quotidien, rattachés à votre identifiant anonyme. L'adresse IP est une donnée personnelle ; elle sert uniquement à limiter les usages abusifs et n'est jamais utilisée à des fins publicitaires.</p>
+    <p>La <strong>permission Caméra</strong> (section 2.3) n'est demandée que si vous utilisez cette mission. Si la caméra n'est pas autorisée ou si l'analyse échoue, la mission ne vous laisse pas bloqué au réveil.</p>
+    <p>Politique d'OpenAI : <a href="https://openai.com/policies/privacy-policy" target="_blank" rel="noopener noreferrer">openai.com/policies/privacy-policy</a></p>
 
     <h2>3. Reconnaissance vocale</h2>
     <p>Le défi vocal repose sur la reconnaissance vocale du système d'exploitation :</p>
@@ -227,6 +251,7 @@
       <li><strong>Supabase</strong> (hébergement de notre base de données et de l'authentification anonyme, dans l'Union européenne). Voir section 2.5.</li>
       <li><strong>RevenueCat</strong> (vérification de l'état d'abonnement uniquement). Voir section 4.</li>
       <li><strong>PostHog</strong> (analytics produit, hébergement en Europe ; stocke aussi votre numéro de téléphone comme propriété de contact si vous le fournissez). Voir section 2.4.</li>
+      <li><strong>OpenAI</strong> — <strong>uniquement si vous activez la mission « preuve photo »</strong> du mode Réveil renforcé (section 2.7). La photo de réveil lui est transmise pour analyse, sans y être conservée. OpenAI est situé aux États-Unis.</li>
       <li><strong>Expo</strong> (service de notifications push : il attribue à votre appareil un jeton technique, que nous conservons dans votre profil pour pouvoir vous envoyer des notifications à l'avenir). Aujourd'hui, toutes les notifications de Gallus sont générées <strong>localement</strong> par votre appareil.</li>
       <li><strong>Meta / WhatsApp</strong> — <strong>uniquement si vous avez fourni votre numéro de téléphone</strong> (section 2.1). Nous utilisons WhatsApp pour vous contacter et recueillir votre avis ; votre numéro est alors traité par Meta selon ses propres conditions.</li>
       <li><strong>React Native</strong> (framework de développement). Gallus n'utilise pas Expo Updates de manière à transmettre des données utilisateur.</li>
@@ -287,7 +312,7 @@
     <p>Gallus est destiné aux personnes âgées de 13 ans ou plus, conformément aux conditions des boutiques d'applications. Nous ne collectons pas intentionnellement de données auprès de mineurs. Si vous estimez qu'un mineur a fourni des informations, contactez-nous à <a href="mailto:contact@gallus-app.com">contact@gallus-app.com</a>.</p>
 
     <h2>12. Transferts internationaux</h2>
-    <p>Les deux services qui hébergent vos données sont situés dans l'<strong>Union européenne</strong> : notre base de données (Supabase, cf. 2.5) et nos analytics produit (PostHog, <code>eu.i.posthog.com</code>, cf. 2.4). Aucun transfert hors UE n'est effectué pour ces collectes. Les transferts éventuels effectués par Apple, Google, RevenueCat ou Expo dans le cadre de leurs services respectifs sont régis par leurs propres politiques (Clauses Contractuelles Types de l'UE, Data Privacy Framework UE-États-Unis).</p>
+    <p>Nos deux hébergements principaux sont situés dans l'<strong>Union européenne</strong> : notre base de données (Supabase, cf. 2.5) et nos analytics produit (PostHog, <code>eu.i.posthog.com</code>, cf. 2.4). En revanche, si vous utilisez la mission <strong>preuve photo</strong> (section 2.7), la photo est transmise à <strong>OpenAI, situé aux États-Unis</strong> : ce traitement implique un <strong>transfert hors UE</strong>. Les transferts effectués par OpenAI, Apple, Google, RevenueCat ou Expo dans le cadre de leurs services respectifs sont régis par leurs propres politiques et garanties (Clauses Contractuelles Types de l'UE, Data Privacy Framework UE-États-Unis).</p>
 
     <h2>13. Modifications de cette politique</h2>
     <p>En cas de modification :</p>
