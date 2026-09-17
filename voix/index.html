@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!--
+    Page « Demander à un proche » : un proche enregistre un réveil pour un user
+    de Gallus. Le secret du lien est derrière le # : jamais envoyé à ce site.
+
+    Sécurité : aucun script inline, aucune ressource tierce ; seuls les scripts
+    de ce dossier s'exécutent et seule l'API Gallus peut être appelée.
+  -->
+  <meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self'; style-src 'self'; img-src 'self'; media-src blob:; connect-src https://ncifazqdnwwarttxijim.supabase.co https://bdhmuqppvcmewixservq.supabase.co; base-uri 'none'; form-action 'none'">
+  <meta name="referrer" content="no-referrer">
+  <meta name="robots" content="noindex, nofollow">
+  <title>Gallus</title>
+  <link rel="icon" type="image/png" href="../app_icon.png">
+  <link rel="stylesheet" href="voix.css">
+  <script src="voix.js" defer></script>
+</head>
+<body>
+  <main class="card" aria-live="polite">
+    <img class="icon" src="../app_icon.png" alt="" width="72" height="72">
+
+    <!-- Chargement -->
+    <section data-view="loading">
+      <p class="muted" data-i18n="loading"></p>
+    </section>
+
+    <!-- Lien inutilisable (invalide, déjà utilisé, expiré, erreur) -->
+    <section data-view="closed" hidden>
+      <h1 data-slot="closed-title"></h1>
+      <p class="muted" data-slot="closed-body"></p>
+    </section>
+
+    <!-- Enregistrement -->
+    <section data-view="record" hidden>
+      <h1 data-slot="title"></h1>
+      <p class="muted" data-i18n="subtitle"></p>
+
+      <label class="field">
+        <span data-i18n="nameLabel"></span>
+        <input id="sender-name" type="text" maxlength="30" autocomplete="given-name" autocapitalize="words" spellcheck="false">
+      </label>
+
+      <div class="recorder">
+        <button id="record" class="record" type="button">
+          <span class="record-dot" aria-hidden="true"></span>
+          <span id="record-label" data-i18n="record"></span>
+        </button>
+        <p id="timer" class="timer" hidden>0:00 / 0:20</p>
+        <div class="progress" hidden><div id="progress-bar"></div></div>
+      </div>
+
+      <div id="review" class="review" hidden>
+        <audio id="playback" controls preload="auto"></audio>
+        <div class="actions">
+          <button id="retry" class="secondary" type="button" data-i18n="retry"></button>
+          <button id="send" class="primary" type="button" data-i18n="send"></button>
+        </div>
+      </div>
+
+      <p id="error" class="error" role="alert" hidden></p>
+    </section>
+
+    <!-- Envoyé -->
+    <section data-view="done" hidden>
+      <h1 data-i18n="doneTitle"></h1>
+      <p class="muted" data-slot="done-body"></p>
+      <a class="discover" href="../download/" data-i18n="discover"></a>
+    </section>
+  </main>
+</body>
+</html>

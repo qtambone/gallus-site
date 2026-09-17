@@ -1,0 +1,163 @@
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+:root {
+  --accent: #E8802A;
+  --text: #F0F0F0;
+  --muted: rgba(255, 255, 255, 0.62);
+  --line: rgba(255, 255, 255, 0.14);
+  --field: rgba(255, 255, 255, 0.07);
+  --danger: #FF6B5E;
+}
+
+body {
+  background: #000;
+  color: var(--text);
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", system-ui, sans-serif;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  padding: 48px 20px;
+  -webkit-font-smoothing: antialiased;
+}
+
+[hidden] { display: none !important; }
+
+.card {
+  width: 100%;
+  max-width: 420px;
+  text-align: center;
+}
+
+.icon {
+  width: 72px;
+  height: 72px;
+  border-radius: 18px;
+  margin-bottom: 28px;
+}
+
+h1 {
+  font-size: 26px;
+  line-height: 1.25;
+  font-weight: 700;
+  margin-bottom: 10px;
+  overflow-wrap: anywhere;
+}
+
+.muted {
+  font-size: 16px;
+  line-height: 1.5;
+  color: var(--muted);
+  overflow-wrap: anywhere;
+}
+
+.field {
+  display: block;
+  text-align: left;
+  margin: 32px 0 28px;
+  font-size: 14px;
+  color: var(--muted);
+}
+
+.field input {
+  display: block;
+  width: 100%;
+  margin-top: 8px;
+  padding: 14px 16px;
+  font: inherit;
+  font-size: 17px;
+  color: var(--text);
+  background: var(--field);
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  outline: none;
+}
+
+.field input:focus { border-color: var(--accent); }
+
+.recorder { margin-bottom: 8px; }
+
+button {
+  font: inherit;
+  cursor: pointer;
+  border: none;
+  -webkit-tap-highlight-color: transparent;
+}
+
+button:disabled { opacity: 0.5; cursor: default; }
+
+.record {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  padding: 16px 28px;
+  font-size: 17px;
+  font-weight: 600;
+  color: #000;
+  background: var(--accent);
+  border-radius: 999px;
+}
+
+.record-dot {
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background: #000;
+}
+
+.record.recording { background: var(--danger); color: #fff; }
+.record.recording .record-dot { border-radius: 3px; background: #fff; }
+
+.timer {
+  margin-top: 16px;
+  font-size: 15px;
+  color: var(--muted);
+  font-variant-numeric: tabular-nums;
+}
+
+.progress {
+  height: 4px;
+  margin: 12px auto 0;
+  max-width: 240px;
+  border-radius: 2px;
+  background: var(--line);
+  overflow: hidden;
+}
+
+#progress-bar {
+  height: 100%;
+  width: 0;
+  background: var(--danger);
+}
+
+.review { margin-top: 8px; }
+
+.review audio { width: 100%; margin-bottom: 16px; }
+
+.actions { display: flex; gap: 12px; }
+
+.actions button {
+  flex: 1;
+  padding: 15px 12px;
+  font-size: 16px;
+  font-weight: 600;
+  border-radius: 14px;
+}
+
+.primary { color: #000; background: var(--accent); }
+.secondary { color: var(--text); background: var(--field); border: 1px solid var(--line); }
+
+.error {
+  margin-top: 20px;
+  font-size: 15px;
+  line-height: 1.5;
+  color: var(--danger);
+}
+
+.discover {
+  display: inline-block;
+  margin-top: 32px;
+  font-size: 15px;
+  color: var(--accent);
+  text-decoration: none;
+}
