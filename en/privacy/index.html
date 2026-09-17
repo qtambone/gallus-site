@@ -226,7 +226,7 @@
       <li><strong>The link</strong> contains a random secret code. Our servers only keep a <strong>fingerprint</strong> (hash) of it: the link itself is stored nowhere. It is valid for <strong>7 days</strong> and works <strong>only once</strong>.</li>
       <li><strong>Your first name</strong>, as entered in the app, is shown on their page so they know who is asking.</li>
       <li><strong>On their page</strong>, their voice is recorded (20 seconds at most) with their browser's microphone permission, and they are asked for their <strong>first name</strong> (optional). The page uses no cookies, no trackers and no third-party services.</li>
-      <li><strong>The recording and their first name</strong> are sent to our servers (Supabase, European Union), in a private space only our server functions can access. They are <strong>deleted as soon as your app has retrieved them</strong>; a recording that is never retrieved is deleted automatically after <strong>30 days</strong>. Once retrieved, the recording only exists <strong>on your device</strong>, like your other alarm sounds.</li>
+      <li><strong>The recording and their first name</strong> are sent to our servers (Supabase, European Union), in a private space only our server functions can access. They are <strong>deleted as soon as your app has retrieved them</strong>; a recording that is never retrieved is deleted automatically after <strong>14 days</strong>. Once retrieved, the recording only exists <strong>on your device</strong>, like your other alarm sounds.</li>
       <li>To let you know, we send you a <strong>push notification</strong> (through Expo and Apple) that contains their first name.</li>
       <li>To prevent abuse, our servers use the <strong>IP address</strong> of requests (link creation, uploads) in daily counters, erased after a few days.</li>
     </ul>
@@ -272,7 +272,7 @@
     <h2>7. Retention</h2>
     <p><strong>On your device:</strong> your local data (section 2.2) is retained as long as the application is installed. To erase it all, uninstall Gallus: iOS and Android automatically wipe the app's private storage.</p>
     <p><strong>On our servers:</strong> the data described in sections 2.5 and 2.6, along with your phone number if you provided one, is retained <strong>until you ask us to delete it</strong>. We do not yet run an automatic purge after a fixed period. Importantly, <strong>uninstalling the app does not delete it</strong>, because it is not stored on your phone. To have it erased, email us at <a href="mailto:contact@gallus-app.com">contact@gallus-app.com</a>: we delete all data associated with your identifier, within 30 days at most.</p>
-    <p><strong>Recordings from someone close (section 2.8):</strong> deleted from our servers as soon as your app has retrieved them, and at the latest 30 days after they were received. Links that are never used are erased once they expire (7 days).</p>
+    <p><strong>Recordings from someone close (section 2.8):</strong> deleted from our servers as soon as your app has retrieved them, and at the latest 14 days after they were received. Links that are never used are erased once they expire (7 days).</p>
     <p>Purchase history is kept by Apple or Google according to their respective policies, independently of Gallus.</p>
 
     <h2>8. Security</h2>

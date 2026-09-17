@@ -52,6 +52,11 @@
       tooShort: 'C’est un peu court : enregistre au moins une seconde.',
       silent: 'On n’a rien entendu. Vérifie que ton micro n’est pas coupé, puis recommence.',
       rateLimited: 'Trop d’essais pour aujourd’hui. Réessaie demain.',
+      rateLimitedTitle: 'Trop d’essais pour aujourd’hui',
+      rateLimitedBody: 'Réessaie demain avec le même lien.',
+      micBusy: 'Le micro est déjà utilisé par une autre app (un appel ?). Libère-le, puis réessaie.',
+      full: 'Sa boîte de réveils est pleine pour l’instant. Réessaie dans quelques jours.',
+      busy: 'Le service est très demandé en ce moment. Réessaie un peu plus tard.',
       sendFailed: 'L’envoi n’a pas marché. Vérifie ta connexion et réessaie.',
     },
     en: {
@@ -83,9 +88,22 @@
       tooShort: 'That’s a bit short: record at least one second.',
       silent: 'We couldn’t hear anything. Make sure your microphone isn’t muted, then start over.',
       rateLimited: 'Too many attempts today. Try again tomorrow.',
+      rateLimitedTitle: 'Too many attempts today',
+      rateLimitedBody: 'Try again tomorrow with the same link.',
+      micBusy: 'The microphone is being used by another app (a call?). Free it up, then try again.',
+      full: 'Their wake-up inbox is full for now. Try again in a few days.',
+      busy: 'The service is very busy right now. Try again a bit later.',
       sendFailed: 'Sending didn’t work. Check your connection and try again.',
     },
   };
+
+  // Jamais dans un cadre : un site tiers pourrait habiller la page (ou son lien)
+  // pour faire enregistrer quelqu'un à son insu. GitHub Pages ne permet pas
+  // l'en-tête frame-ancestors, d'où ce garde-fou en script.
+  if (window.top !== window.self) {
+    document.documentElement.hidden = true;
+    return;
+  }
 
   var lang = /^fr\b/i.test(navigator.language || '') ? 'fr' : 'en';
   var text = STRINGS[lang];
@@ -114,11 +132,21 @@
       invalid: ['invalidTitle', 'invalidBody'],
       used: ['usedTitle', 'usedBody'],
       expired: ['expiredTitle', 'expiredBody'],
+      rate_limited: ['rateLimitedTitle', 'rateLimitedBody'],
       error: ['loadErrorTitle', 'loadErrorBody'],
     }[reason] || ['invalidTitle', 'invalidBody'];
     $('[data-slot="closed-title"]').textContent = text[keys[0]];
     $('[data-slot="closed-body"]').textContent = text[keys[1]];
+    // Lien mort : le secret n'a plus rien à faire dans l'adresse (historique,
+    // copie de l'URL). Pas pour une panne passagère : recharger doit marcher.
+    if (reason !== 'error' && reason !== 'rate_limited') forgetToken();
     showView('closed');
+  }
+
+  function forgetToken() {
+    try {
+      history.replaceState(null, '', window.location.pathname + window.location.search);
+    } catch (e) { /* adresse inchangée, sans conséquence */ }
   }
 
   function showError(key) {
@@ -149,6 +177,10 @@
         });
       })
       .then(function (result) {
+        if (result.status === 429) {
+          showClosed('rate_limited');
+          return;
+        }
         if (result.body.status !== 'open') {
           var known = ['invalid', 'used', 'expired'].indexOf(result.body.status) >= 0;
           showClosed(known ? result.body.status : 'error');
@@ -181,6 +213,10 @@
   var session = null; // { stream, context, node, chunks, samples, rate }
   var wavBlob = null;
   var playbackUrl = null;
+  var startingTimer = null;
+  /** Un envoi est parti sans réponse (réseau coupé) : il a peut-être abouti. */
+  var uploadMaybeDelivered = false;
+  var STARTING_TIMEOUT_MS = 10000;
 
   function formatSeconds(seconds) {
     var s = Math.min(MAX_SECONDS, Math.floor(seconds));
@@ -189,6 +225,10 @@
 
   function setState(next) {
     state = next;
+    if (next !== 'starting' && startingTimer) {
+      clearTimeout(startingTimer);
+      startingTimer = null;
+    }
     recordButton.classList.toggle('recording', next === 'recording');
     recordButton.disabled = next === 'starting' || next === 'sending';
     recordButton.hidden = next === 'review' || next === 'sending';
@@ -248,6 +288,15 @@
         mute.connect(context.destination);
 
         session = { stream: stream, context: context, node: node, chunks: [], samples: 0, rate: context.sampleRate };
+        // Micro accordé mais aucun son ne remonte (contexte audio bloqué) : on
+        // rend la main plutôt que de laisser « Préparation du micro… » à vie.
+        var started = session;
+        startingTimer = setTimeout(function () {
+          if (state !== 'starting' || session !== started) return;
+          releaseSession();
+          setState('idle');
+          showError('unsupported');
+        }, STARTING_TIMEOUT_MS);
         var maxSamples = MAX_SECONDS * context.sampleRate;
         node.port.onmessage = function (event) {
           if (!session) return;
@@ -268,8 +317,10 @@
         if (context) context.close().catch(function () {});
         session = null;
         setState('idle');
-        var denied = error && (error.name === 'NotAllowedError' || error.name === 'SecurityError');
-        showError(denied ? 'micDenied' : 'unsupported');
+        var name = error && error.name;
+        if (name === 'NotAllowedError' || name === 'SecurityError') showError('micDenied');
+        else if (name === 'NotReadableError' || name === 'AbortError') showError('micBusy');
+        else showError('unsupported');
       });
   }
 
@@ -378,7 +429,7 @@
     setState('sending');
 
     var headers = { 'Content-Type': 'audio/wav', 'x-voice-token': token };
-    var name = $('#sender-name').value.trim().slice(0, 30);
+    var name = senderName();
     if (name) headers['x-sender-name'] = encodeURIComponent(name);
 
     fetch(api + '?action=upload', { method: 'POST', headers: headers, body: wavBlob })
@@ -388,15 +439,18 @@
         });
       })
       .then(function (result) {
-        if (result.status === 200 && result.body.ok) {
+        var error = result.body.error;
+        // Réponse d'un premier envoi perdue, lien « déjà utilisé » au second :
+        // c'est ce premier envoi qui a abouti.
+        if ((result.status === 200 && result.body.ok) || (error === 'used' && uploadMaybeDelivered)) {
           $('[data-slot="done-body"]').textContent = requesterName
             ? fill(text.doneWithName, requesterName)
             : text.doneNoName;
           retry();
+          forgetToken();
           showView('done');
           return;
         }
-        var error = result.body.error;
         if (error === 'used' || error === 'expired' || error === 'invalid') {
           showClosed(error);
           return;
@@ -404,13 +458,25 @@
         setState('review');
         if (error === 'silent') showError('silent');
         else if (error === 'too_short') showError('tooShort');
+        else if (error === 'full') showError('full');
+        else if (error === 'busy') showError('busy');
         else if (result.status === 429) showError('rateLimited');
         else showError('sendFailed');
       })
       .catch(function () {
+        uploadMaybeDelivered = true;
         setState('review');
         showError('sendFailed');
       });
+  }
+
+  /** Prénom saisi : 30 caractères au plus sans couper un emoji, sans demi-caractère. */
+  function senderName() {
+    return Array.from($('#sender-name').value.trim())
+      .filter(function (c) { return !(c.length === 1 && c >= '\uD800' && c <= '\uDFFF'); })
+      .slice(0, 30)
+      .join('')
+      .trim();
   }
 
   recordButton.addEventListener('click', function () {
@@ -420,8 +486,12 @@
   $('#retry').addEventListener('click', retry);
   $('#send').addEventListener('click', send);
 
-  // Page quittée ou mise en arrière-plan : le micro est rendu.
-  window.addEventListener('pagehide', releaseSession);
+  // Page quittée ou mise en arrière-plan : le micro est rendu, et la page revient
+  // (cache avant/arrière de Safari) prête à réenregistrer.
+  window.addEventListener('pagehide', function () {
+    releaseSession();
+    if (state === 'starting' || state === 'recording') setState('idle');
+  });
 
   setState('idle');
   load();
