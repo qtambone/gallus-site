@@ -14,9 +14,9 @@
   <div class="container">
     <a href="../../fr/privacy/" class="lang-switch">Version française</a>
     <h1>Privacy</h1>
-    <p class="updated">Last updated: July 29, 2026</p>
+    <p class="updated">Last updated: September 17, 2026</p>
     <p class="intro">We take the protection of your personal data seriously. This privacy policy explains how the <strong>Gallus</strong> application collects, uses, shares, and protects information when you use it. It applies to all <strong>Gallus</strong> users, regardless of where you reside.</p>
-    <p class="intro"><strong>In short:</strong> Gallus works with <strong>no user account</strong> and no advertising tracking whatsoever. The things that are most personal to you <strong>never leave your device</strong>: the content of your engagement phrases, your voice, your voice transcripts, your motivation photo, and your favorite quote (see sections 2.2 and 3). That said, Gallus <strong>does have servers</strong> (Supabase, hosted in the European Union) where we record <strong>technical data tied to an anonymous identifier</strong>: your alarm settings, usage and diagnostic events, and subscription state (see section 2.5). Two pieces of personal data may be added to it, both <strong>optional</strong>: a <strong>phone number</strong> you may provide during onboarding so we can gather your feedback (section 2.1), and the <strong>free-text comment</strong> you may write if you cancel your subscription (section 2.6). Finally, one exception about photos: if you enable "Stronger wake-up" mode, its <strong>photo proof</strong> mission takes a wake-up photo of you that is <strong>sent to an AI service (OpenAI) just long enough to check that you are standing up</strong>, then kept nowhere (section 2.7). It is distinct from your motivation photo, which never leaves your device.</p>
+    <p class="intro"><strong>In short:</strong> Gallus works with <strong>no user account</strong> and no advertising tracking whatsoever. The things that are most personal to you <strong>never leave your device</strong>: the content of your engagement phrases, your voice, your voice transcripts, your motivation photo, and your favorite quote (see sections 2.2 and 3). That said, Gallus <strong>does have servers</strong> (Supabase, hosted in the European Union) where we record <strong>technical data tied to an anonymous identifier</strong>: your alarm settings, usage and diagnostic events, and subscription state (see section 2.5). Two pieces of personal data may be added to it, both <strong>optional</strong>: a <strong>phone number</strong> you may provide during onboarding so we can gather your feedback (section 2.1), and the <strong>free-text comment</strong> you may write if you cancel your subscription (section 2.6). Finally, one exception about photos: if you enable "Stronger wake-up" mode, its <strong>photo proof</strong> mission takes a wake-up photo of you that is <strong>sent to an AI service (OpenAI) just long enough to check that you are standing up</strong>, then kept nowhere (section 2.7). It is distinct from your motivation photo, which never leaves your device. Finally, if you <strong>ask someone close to record a wake-up sound</strong> for you, their recording and first name pass through our servers until your app retrieves them (section 2.8).</p>
 
     <h2>1. Data Controller</h2>
     <p>The data controller is <strong>Gallus</strong>, based in France. Contact: <a href="mailto:contact@gallus-app.com">contact@gallus-app.com</a></p>
@@ -220,6 +220,18 @@
     <p>The <strong>Camera permission</strong> (section 2.3) is only requested if you use this mission. If the camera is not authorized or the analysis fails, the mission does not leave you locked at wake-up.</p>
     <p>OpenAI's policy: <a href="https://openai.com/policies/privacy-policy" target="_blank" rel="noopener noreferrer">openai.com/policies/privacy-policy</a></p>
 
+    <h3>2.8 "Ask a friend or loved one to record their voice"</h3>
+    <p>From the <strong>Create</strong> screen of the alarm sound, you can send a <strong>link</strong> to someone close so they can record a wake-up sound for you, from their browser, with no app and no account. This feature is <strong>optional</strong>.</p>
+    <ul>
+      <li><strong>The link</strong> contains a random secret code. Our servers only keep a <strong>fingerprint</strong> (hash) of it: the link itself is stored nowhere. It is valid for <strong>7 days</strong> and works <strong>only once</strong>.</li>
+      <li><strong>Your first name</strong>, as entered in the app, is shown on their page so they know who is asking.</li>
+      <li><strong>On their page</strong>, their voice is recorded (20 seconds at most) with their browser's microphone permission, and they are asked for their <strong>first name</strong> (optional). The page uses no cookies, no trackers and no third-party services.</li>
+      <li><strong>The recording and their first name</strong> are sent to our servers (Supabase, European Union), in a private space only our server functions can access. They are <strong>deleted as soon as your app has retrieved them</strong>; a recording that is never retrieved is deleted automatically after <strong>30 days</strong>. Once retrieved, the recording only exists <strong>on your device</strong>, like your other alarm sounds.</li>
+      <li>To let you know, we send you a <strong>push notification</strong> (through Expo and Apple) that contains their first name.</li>
+      <li>To prevent abuse, our servers use the <strong>IP address</strong> of requests (link creation, uploads) in daily counters, erased after a few days.</li>
+    </ul>
+    <p>Did you record a wake-up sound for someone and want it deleted? Email us at <a href="mailto:contact@gallus-app.com">contact@gallus-app.com</a>.</p>
+
     <h2>3. Speech recognition</h2>
     <p>The voice challenge relies on the operating system's speech recognition:</p>
     <ul>
@@ -251,7 +263,7 @@
       <li><strong>RevenueCat</strong> (subscription state verification only). See section 4.</li>
       <li><strong>PostHog</strong> (product analytics, EU-hosted; also stores your phone number as a contact property if you provide it). See section 2.4.</li>
       <li><strong>OpenAI</strong> — <strong>only if you enable the "photo proof" mission</strong> of "Stronger wake-up" mode (section 2.7). The wake-up photo is sent to it for analysis, without being retained. OpenAI is located in the United States.</li>
-      <li><strong>Expo</strong> (push notification service: it issues a technical token for your device, which we keep in your profile so we can send you notifications in the future). Today, all of Gallus's notifications are generated <strong>locally</strong> by your device.</li>
+      <li><strong>Expo</strong> (push notification service: it issues a technical token for your device, which we keep in your profile). Alarm notifications are generated <strong>locally</strong> by your device; only the "someone close recorded a wake-up sound for you" notification goes through Expo (section 2.8).</li>
       <li><strong>Meta / WhatsApp</strong> — <strong>only if you provided your phone number</strong> (section 2.1). We use WhatsApp to contact you for feedback; your number is then processed by Meta under its own terms.</li>
       <li><strong>React Native</strong> (development framework). Gallus does not use Expo Updates in a way that transmits user data.</li>
     </ul>
@@ -260,6 +272,7 @@
     <h2>7. Retention</h2>
     <p><strong>On your device:</strong> your local data (section 2.2) is retained as long as the application is installed. To erase it all, uninstall Gallus: iOS and Android automatically wipe the app's private storage.</p>
     <p><strong>On our servers:</strong> the data described in sections 2.5 and 2.6, along with your phone number if you provided one, is retained <strong>until you ask us to delete it</strong>. We do not yet run an automatic purge after a fixed period. Importantly, <strong>uninstalling the app does not delete it</strong>, because it is not stored on your phone. To have it erased, email us at <a href="mailto:contact@gallus-app.com">contact@gallus-app.com</a>: we delete all data associated with your identifier, within 30 days at most.</p>
+    <p><strong>Recordings from someone close (section 2.8):</strong> deleted from our servers as soon as your app has retrieved them, and at the latest 30 days after they were received. Links that are never used are erased once they expire (7 days).</p>
     <p>Purchase history is kept by Apple or Google according to their respective policies, independently of Gallus.</p>
 
     <h2>8. Security</h2>
@@ -306,6 +319,7 @@
 
     <h2>10. Push notifications</h2>
     <p>Notifications are essential to Gallus: they trigger alarms and maintain the chained-alarm mechanism (which keeps reminding you until you complete the challenge). Disabling notifications means alarms cannot be reliably triggered.</p>
+    <p>Gallus may also notify you when someone close has recorded a wake-up sound for you (section 2.8).</p>
 
     <h2>11. Protection of minors</h2>
     <p>Gallus is intended for users aged 13 or older, in line with app store terms. We do not knowingly collect data from minors. If you believe a minor has provided information, contact us at <a href="mailto:contact@gallus-app.com">contact@gallus-app.com</a>.</p>

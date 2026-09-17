@@ -14,9 +14,9 @@
   <div class="container">
     <a href="../../en/privacy/" class="lang-switch">English version</a>
     <h1>Confidentialité</h1>
-    <p class="updated">Dernière mise à jour : 29 juillet 2026</p>
+    <p class="updated">Dernière mise à jour : 17 septembre 2026</p>
     <p class="intro">Nous accordons une grande importance à la protection de vos données personnelles. Cette politique de confidentialité explique comment l'application <strong>Gallus</strong> collecte, utilise, partage et protège les informations lors de son utilisation. Elle s'applique à tous les utilisateurs de <strong>Gallus</strong>, que vous résidiez en France, dans l'Union européenne, aux États-Unis ou dans tout autre pays.</p>
-    <p class="intro"><strong>En résumé :</strong> Gallus fonctionne <strong>sans compte utilisateur</strong> et sans aucun tracking publicitaire. Ce qui vous est le plus personnel <strong>ne quitte jamais votre appareil</strong> : le contenu de vos phrases d'engagement, votre voix, vos transcriptions vocales, votre photo de motivation et votre citation favorite (voir les sections 2.2 et 3). En revanche, Gallus <strong>dispose bien de serveurs</strong> (Supabase, hébergés dans l'Union européenne) sur lesquels nous enregistrons des <strong>données techniques rattachées à un identifiant anonyme</strong> : réglages de vos alarmes, événements d'usage et de diagnostic, état d'abonnement (voir la section 2.5). Deux données personnelles peuvent s'y ajouter, toutes deux <strong>optionnelles</strong> : un <strong>numéro de téléphone</strong> que vous pouvez fournir pendant l'onboarding pour qu'on recueille votre avis (section 2.1), et le <strong>commentaire libre</strong> que vous pouvez écrire si vous résiliez votre abonnement (section 2.6). Enfin, une exception à connaître sur les photos : si vous activez le mode « Réveil renforcé », sa mission <strong>preuve photo</strong> prend au réveil une photo de vous qui est <strong>transmise à un service d'IA (OpenAI) le temps de vérifier que vous êtes bien debout</strong>, puis n'est conservée nulle part (section 2.7). Elle est distincte de votre photo de motivation, qui, elle, ne quitte jamais l'appareil.</p>
+    <p class="intro"><strong>En résumé :</strong> Gallus fonctionne <strong>sans compte utilisateur</strong> et sans aucun tracking publicitaire. Ce qui vous est le plus personnel <strong>ne quitte jamais votre appareil</strong> : le contenu de vos phrases d'engagement, votre voix, vos transcriptions vocales, votre photo de motivation et votre citation favorite (voir les sections 2.2 et 3). En revanche, Gallus <strong>dispose bien de serveurs</strong> (Supabase, hébergés dans l'Union européenne) sur lesquels nous enregistrons des <strong>données techniques rattachées à un identifiant anonyme</strong> : réglages de vos alarmes, événements d'usage et de diagnostic, état d'abonnement (voir la section 2.5). Deux données personnelles peuvent s'y ajouter, toutes deux <strong>optionnelles</strong> : un <strong>numéro de téléphone</strong> que vous pouvez fournir pendant l'onboarding pour qu'on recueille votre avis (section 2.1), et le <strong>commentaire libre</strong> que vous pouvez écrire si vous résiliez votre abonnement (section 2.6). Enfin, une exception à connaître sur les photos : si vous activez le mode « Réveil renforcé », sa mission <strong>preuve photo</strong> prend au réveil une photo de vous qui est <strong>transmise à un service d'IA (OpenAI) le temps de vérifier que vous êtes bien debout</strong>, puis n'est conservée nulle part (section 2.7). Elle est distincte de votre photo de motivation, qui, elle, ne quitte jamais l'appareil. Enfin, si vous <strong>demandez à un proche d'enregistrer un réveil</strong> pour vous, son enregistrement et son prénom transitent par nos serveurs, le temps que votre application les récupère (section 2.8).</p>
 
     <h2>1. Responsable du traitement</h2>
     <p>Le responsable du traitement des données est <strong>Gallus</strong>, dont l'email de contact est : <a href="mailto:contact@gallus-app.com">contact@gallus-app.com</a></p>
@@ -221,6 +221,18 @@
     <p>La <strong>permission Caméra</strong> (section 2.3) n'est demandée que si vous utilisez cette mission. Si la caméra n'est pas autorisée ou si l'analyse échoue, la mission ne vous laisse pas bloqué au réveil.</p>
     <p>Politique d'OpenAI : <a href="https://openai.com/policies/privacy-policy" target="_blank" rel="noopener noreferrer">openai.com/policies/privacy-policy</a></p>
 
+    <h3>2.8 « Demander à un ami/proche d'enregistrer sa voix »</h3>
+    <p>Depuis l'écran <strong>Créer</strong> de la sonnerie, vous pouvez envoyer un <strong>lien</strong> à un proche pour qu'il enregistre un réveil pour vous, depuis son navigateur, sans application ni compte. Cette fonctionnalité est <strong>optionnelle</strong>.</p>
+    <ul>
+      <li><strong>Le lien</strong> contient un code secret aléatoire. Nos serveurs n'en conservent qu'une <strong>empreinte</strong> (hash) : le lien lui-même n'est stocké nulle part. Il est valable <strong>7 jours</strong> et ne sert qu'<strong>une seule fois</strong>.</li>
+      <li><strong>Votre prénom</strong>, tel que saisi dans l'application, est affiché sur la page du proche pour qu'il sache qui lui fait cette demande.</li>
+      <li><strong>Sur la page du proche</strong>, sa voix est enregistrée (20 secondes au maximum) avec l'autorisation du micro de son navigateur, et son <strong>prénom</strong> lui est demandé (facultatif). La page n'utilise ni cookie, ni traceur, ni service tiers.</li>
+      <li><strong>L'enregistrement et le prénom du proche</strong> sont envoyés à nos serveurs (Supabase, Union européenne), dans un espace privé accessible uniquement par nos fonctions serveur. Ils sont <strong>supprimés dès que votre application les a récupérés</strong> ; un enregistrement jamais récupéré est supprimé automatiquement après <strong>30 jours</strong>. Une fois récupéré, l'enregistrement n'existe plus que <strong>sur votre appareil</strong>, comme vos autres sonneries.</li>
+      <li>Pour vous prévenir, nous vous envoyons une <strong>notification push</strong> (via Expo et Apple) qui contient le prénom de votre proche.</li>
+      <li>Pour empêcher les abus, nos serveurs utilisent l'<strong>adresse IP</strong> des requêtes (création de liens, envois) dans des compteurs quotidiens, effacés après quelques jours.</li>
+    </ul>
+    <p>Vous avez enregistré un réveil pour quelqu'un et souhaitez qu'il soit supprimé ? Écrivez-nous à <a href="mailto:contact@gallus-app.com">contact@gallus-app.com</a>.</p>
+
     <h2>3. Reconnaissance vocale</h2>
     <p>Le défi vocal repose sur la reconnaissance vocale du système d'exploitation :</p>
     <ul>
@@ -252,7 +264,7 @@
       <li><strong>RevenueCat</strong> (vérification de l'état d'abonnement uniquement). Voir section 4.</li>
       <li><strong>PostHog</strong> (analytics produit, hébergement en Europe ; stocke aussi votre numéro de téléphone comme propriété de contact si vous le fournissez). Voir section 2.4.</li>
       <li><strong>OpenAI</strong> — <strong>uniquement si vous activez la mission « preuve photo »</strong> du mode Réveil renforcé (section 2.7). La photo de réveil lui est transmise pour analyse, sans y être conservée. OpenAI est situé aux États-Unis.</li>
-      <li><strong>Expo</strong> (service de notifications push : il attribue à votre appareil un jeton technique, que nous conservons dans votre profil pour pouvoir vous envoyer des notifications à l'avenir). Aujourd'hui, toutes les notifications de Gallus sont générées <strong>localement</strong> par votre appareil.</li>
+      <li><strong>Expo</strong> (service de notifications push : il attribue à votre appareil un jeton technique, que nous conservons dans votre profil). Les notifications d'alarme sont générées <strong>localement</strong> par votre appareil ; seule la notification « un proche vous a enregistré un réveil » passe par Expo (section 2.8).</li>
       <li><strong>Meta / WhatsApp</strong> — <strong>uniquement si vous avez fourni votre numéro de téléphone</strong> (section 2.1). Nous utilisons WhatsApp pour vous contacter et recueillir votre avis ; votre numéro est alors traité par Meta selon ses propres conditions.</li>
       <li><strong>React Native</strong> (framework de développement). Gallus n'utilise pas Expo Updates de manière à transmettre des données utilisateur.</li>
     </ul>
@@ -261,6 +273,7 @@
     <h2>7. Durée de conservation</h2>
     <p><strong>Sur votre appareil :</strong> vos données locales (section 2.2) sont conservées tant que l'application est installée. Pour tout effacer, désinstallez Gallus : iOS et Android suppriment automatiquement le stockage privé de l'application.</p>
     <p><strong>Sur nos serveurs :</strong> les données décrites en sections 2.5 et 2.6, ainsi que votre numéro de téléphone si vous l'avez fourni, sont conservées <strong>jusqu'à ce que vous demandiez leur suppression</strong>. Nous ne pratiquons pas encore de purge automatique au bout d'une durée fixe. Point important : <strong>désinstaller l'application ne les supprime pas</strong>, car elles ne sont pas stockées sur votre téléphone. Pour les faire effacer, écrivez-nous à <a href="mailto:contact@gallus-app.com">contact@gallus-app.com</a> : nous supprimons l'ensemble des données associées à votre identifiant, sous 30 jours au plus.</p>
+    <p><strong>Enregistrements de proches (section 2.8) :</strong> supprimés de nos serveurs dès que votre application les a récupérés, et au plus tard 30 jours après leur réception. Les liens jamais utilisés sont effacés après leur expiration (7 jours).</p>
     <p>L'historique d'achat est conservé par Apple ou Google selon leur politique respective, indépendamment de Gallus.</p>
 
     <h2>8. Sécurité</h2>
@@ -307,6 +320,7 @@
 
     <h2>10. Notifications push</h2>
     <p>Les notifications sont indispensables au fonctionnement de Gallus : elles servent à faire sonner vos alarmes et à maintenir le mécanisme d'alarme en chaîne (qui réveille jusqu'à ce que vous releviez le défi). Si vous désactivez les notifications, Gallus ne pourra plus déclencher d'alarme fiable.</p>
+    <p>Gallus peut aussi vous envoyer une notification quand un proche vous a enregistré un réveil (section 2.8).</p>
 
     <h2>11. Protection des mineurs</h2>
     <p>Gallus est destiné aux personnes âgées de 13 ans ou plus, conformément aux conditions des boutiques d'applications. Nous ne collectons pas intentionnellement de données auprès de mineurs. Si vous estimez qu'un mineur a fourni des informations, contactez-nous à <a href="mailto:contact@gallus-app.com">contact@gallus-app.com</a>.</p>
