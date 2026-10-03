@@ -19,7 +19,7 @@
   <script src="voix.js" defer></script>
 </head>
 <body>
-  <main class="card" aria-live="polite">
+  <main class="card">
     <img class="icon" src="../app_icon.png" alt="" width="72" height="72">
 
     <!-- Chargement -->
@@ -28,7 +28,7 @@
     </section>
 
     <!-- Lien inutilisable (invalide, déjà utilisé, expiré, erreur) -->
-    <section data-view="closed" hidden>
+    <section data-view="closed" aria-live="polite" hidden>
       <h1 data-slot="closed-title"></h1>
       <p class="muted" data-slot="closed-body"></p>
     </section>
@@ -48,7 +48,7 @@
           <span class="record-dot" aria-hidden="true"></span>
           <span id="record-label" data-i18n="record"></span>
         </button>
-        <p id="timer" class="timer" hidden>0:00 / 0:20</p>
+        <p id="timer" class="timer" aria-live="off" hidden>0:00 / 0:20</p>
         <div class="progress" hidden><div id="progress-bar"></div></div>
       </div>
 
@@ -75,7 +75,7 @@
       <p class="muted small" data-slot="elsewhere-hint"></p>
     </section>
     <!-- Envoyé -->
-    <section data-view="done" hidden>
+    <section data-view="done" aria-live="polite" hidden>
       <h1 data-i18n="doneTitle"></h1>
       <p class="muted" data-slot="done-body"></p>
       <a class="discover" href="../download/" data-i18n="discover"></a>

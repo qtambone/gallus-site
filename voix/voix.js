@@ -140,7 +140,7 @@
   // (Instagram, Facebook, Messenger, TikTok, Snapchat, LinkedIn…). WhatsApp et
   // Messages ouvrent Safari ou sa vue intégrée, qui l'autorisent.
   var ua = navigator.userAgent || '';
-  var inAppBrowser = /Instagram|FBAN|FBAV|FB_IAB|FBIOS|Messenger|musical_ly|BytedanceWebview|TikTok|Snapchat|LinkedInApp|Pinterest|Line\/|GSA\//i.test(ua);
+  var inAppBrowser = /Instagram|FBAN|FBAV|FB_IAB|FBIOS|Messenger|musical_ly|BytedanceWebview|TikTok|Snapchat|LinkedInApp|Pinterest|Line\/|GSA\/|Barcelona|Twitter|Discord|KAKAOTALK|Reddit/i.test(ua);
   var android = /Android/i.test(ua);
   var otherBrowser = android ? 'Chrome' : 'Safari';
 
@@ -287,6 +287,16 @@
   /** Un envoi est parti sans réponse (réseau coupé) : il a peut-être abouti. */
   var uploadMaybeDelivered = false;
   var STARTING_TIMEOUT_MS = 10000;
+  /** Envoi bloqué (réseau mobile figé) : on rend la main au lieu d'« Envoi… » à vie. */
+  var UPLOAD_TIMEOUT_MS = 30000;
+  /**
+   * Démarrage du micro en cours : chaque tentative a son numéro. Page quittée
+   * pendant le démarrage, la tentative est périmée et rend le micro dès qu'il
+   * arrive (sinon il restait ouvert, sans rien d'affiché).
+   */
+  var startAttempt = 0;
+  /** Le micro est en train de démarrer (« starting » sert aussi à l'encodage, après l'arrêt). */
+  var micStarting = false;
 
   function formatSeconds(seconds) {
     var s = Math.min(MAX_SECONDS, Math.floor(seconds));
@@ -340,14 +350,19 @@
     setState('starting');
     var stream = null;
     var context = null;
+    var attempt = ++startAttempt;
+    var stale = function () { return attempt !== startAttempt || state !== 'starting'; };
+    micStarting = true;
     navigator.mediaDevices
       .getUserMedia({ audio: { channelCount: 1, echoCancellation: true, noiseSuppression: true, autoGainControl: true } })
       .then(function (s) {
         stream = s;
+        if (stale()) throw { name: 'Cancelled' };
         context = new AudioContext();
         return context.audioWorklet.addModule('recorder-worklet.js');
       })
       .then(function () {
+        if (stale()) throw { name: 'Cancelled' };
         var source = context.createMediaStreamSource(stream);
         var node = new AudioWorkletNode(context, 'gallus-recorder');
         // Un nœud non relié à la sortie n'est pas toujours traité : on le relie
@@ -364,21 +379,32 @@
         var started = session;
         startingTimer = setTimeout(function () {
           if (state !== 'starting' || session !== started) return;
+          micStarting = false;
           releaseSession();
           setState('idle');
           showError('unsupported');
         }, STARTING_TIMEOUT_MS);
         var maxSamples = MAX_SECONDS * context.sampleRate;
+        // Affichage mis à jour seulement quand il change (une fois par seconde
+        // pour le texte) : les blocs audio arrivent des centaines de fois par
+        // seconde, et un lecteur d'écran relirait le minuteur à chaque fois.
+        var shownText = '';
+        var shownPct = -1;
         node.port.onmessage = function (event) {
           if (!session) return;
           // L'invite « enregistrement » n'apparaît qu'une fois le micro réellement
           // parti : sinon les premiers mots se perdraient.
-          if (state === 'starting') setState('recording');
+          if (state === 'starting') {
+            micStarting = false;
+            setState('recording');
+          }
           session.chunks.push(event.data);
           session.samples += event.data.length;
           var seconds = session.samples / session.rate;
-          timer.textContent = formatSeconds(seconds) + ' / ' + formatSeconds(MAX_SECONDS);
-          progressBar.style.width = Math.min(100, (seconds / MAX_SECONDS) * 100) + '%';
+          var label = formatSeconds(seconds) + ' / ' + formatSeconds(MAX_SECONDS);
+          if (label !== shownText) timer.textContent = shownText = label;
+          var pct = Math.min(100, Math.round((seconds / MAX_SECONDS) * 200) / 2);
+          if (pct !== shownPct) progressBar.style.width = (shownPct = pct) + '%';
           if (session.samples >= maxSamples) stopRecording();
         };
         return context.resume();
@@ -386,9 +412,12 @@
       .catch(function (error) {
         if (stream) stream.getTracks().forEach(function (track) { track.stop(); });
         if (context) context.close().catch(function () {});
+        var name = error && error.name;
+        if (attempt === startAttempt) micStarting = false;
+        // Tentative périmée (page quittée, autre tentative) : micro rendu, rien d'autre.
+        if (name === 'Cancelled') return;
         session = null;
         setState('idle');
-        var name = error && error.name;
         // Dans une appli, un refus vient presque toujours de l'appli elle-même.
         if (inAppBrowser && name !== 'NotReadableError' && name !== 'AbortError') showElsewhere();
         else if (name === 'NotAllowedError' || name === 'SecurityError') showError('micDenied');
@@ -505,8 +534,16 @@
     var name = senderName();
     if (name) headers['x-sender-name'] = encodeURIComponent(name);
 
-    fetch(api + '?action=upload', { method: 'POST', headers: headers, body: wavBlob })
+    var controller = typeof AbortController === 'function' ? new AbortController() : null;
+    var abortTimer = controller ? setTimeout(function () { controller.abort(); }, UPLOAD_TIMEOUT_MS) : null;
+    fetch(api + '?action=upload', {
+      method: 'POST',
+      headers: headers,
+      body: wavBlob,
+      signal: controller ? controller.signal : undefined
+    })
       .then(function (response) {
+        clearTimeout(abortTimer);
         return response.json().catch(function () { return {}; }).then(function (body) {
           return { status: response.status, body: body };
         });
@@ -537,6 +574,9 @@
         else showError('sendFailed');
       })
       .catch(function () {
+        clearTimeout(abortTimer);
+        // Réseau coupé ou envoi abandonné au bout de 30 s : il a pu arriver quand
+        // même (le prochain essai le saura, « déjà utilisé »).
         uploadMaybeDelivered = true;
         setState('review');
         showError('sendFailed');
@@ -563,8 +603,23 @@
   // Page quittée ou mise en arrière-plan : le micro est rendu, et la page revient
   // (cache avant/arrière de Safari) prête à réenregistrer.
   window.addEventListener('pagehide', function () {
+    startAttempt++;
+    micStarting = false;
     releaseSession();
     if (state === 'starting' || state === 'recording') setState('idle');
+  });
+  // Onglet ou appli mis en arrière-plan en plein enregistrement : le téléphone
+  // coupe le micro sans prévenir. On s'arrête proprement sur ce qui est déjà
+  // enregistré (à réécouter, ou à recommencer).
+  document.addEventListener('visibilitychange', function () {
+    if (document.visibilityState !== 'hidden') return;
+    if (state === 'recording') stopRecording();
+    else if (micStarting) {
+      micStarting = false;
+      startAttempt++;
+      releaseSession();
+      setState('idle');
+    }
   });
 
   setState('idle');
