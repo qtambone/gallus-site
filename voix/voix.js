@@ -58,6 +58,16 @@
       full: 'Sa boîte de réveils est pleine pour l’instant. Réessaie dans quelques jours.',
       busy: 'Le service est très demandé en ce moment. Réessaie un peu plus tard.',
       sendFailed: 'L’envoi n’a pas marché. Vérifie ta connexion et réessaie.',
+      // Navigateur d'une appli (Instagram, Messenger…) qui bloque le micro.
+      elsewhereTitle: 'Ouvre ce lien dans {browser}',
+      elsewhereBody: 'L’appli dans laquelle tu l’as ouvert bloque le micro. Dans {browser}, ça marche en 20\u00a0secondes.',
+      elsewhereMenuIos: 'Touche ••• en haut à droite',
+      elsewhereMenuAndroid: 'Touche ⋮ en haut à droite',
+      elsewhereOpen: 'Choisis « Ouvrir dans le navigateur »',
+      elsewhereOpenAndroid: 'Choisis « Ouvrir dans Chrome »',
+      copyLink: 'Copier le lien',
+      copied: 'Lien copié',
+      copyHint: 'Ou copie-le, puis colle-le dans {browser}.',
     },
     en: {
       loading: 'Loading…',
@@ -94,6 +104,16 @@
       full: 'Their wake-up inbox is full for now. Try again in a few days.',
       busy: 'The service is very busy right now. Try again a bit later.',
       sendFailed: 'Sending didn’t work. Check your connection and try again.',
+      // In-app browser (Instagram, Messenger…) that blocks the microphone.
+      elsewhereTitle: 'Open this link in {browser}',
+      elsewhereBody: 'The app you opened it in blocks the microphone. In {browser}, it takes 20\u00a0seconds.',
+      elsewhereMenuIos: 'Tap ••• in the top right corner',
+      elsewhereMenuAndroid: 'Tap ⋮ in the top right corner',
+      elsewhereOpen: 'Choose “Open in browser”',
+      elsewhereOpenAndroid: 'Choose “Open in Chrome”',
+      copyLink: 'Copy the link',
+      copied: 'Link copied',
+      copyHint: 'Or copy it, then paste it into {browser}.',
     },
   };
 
@@ -115,6 +135,14 @@
 
   var $ = function (selector) { return document.querySelector(selector); };
   var requesterName = null;
+
+  // Navigateur intégré d'une appli : beaucoup refusent le micro à la page
+  // (Instagram, Facebook, Messenger, TikTok, Snapchat, LinkedIn…). WhatsApp et
+  // Messages ouvrent Safari ou sa vue intégrée, qui l'autorisent.
+  var ua = navigator.userAgent || '';
+  var inAppBrowser = /Instagram|FBAN|FBAV|FB_IAB|FBIOS|Messenger|musical_ly|BytedanceWebview|TikTok|Snapchat|LinkedInApp|Pinterest|Line\/|GSA\//i.test(ua);
+  var android = /Android/i.test(ua);
+  var otherBrowser = android ? 'Chrome' : 'Safari';
 
   function fill(template, name) {
     // Fonction de remplacement : un « $ » dans le texte ne serait pas interprété.
@@ -141,6 +169,48 @@
     // copie de l'URL). Pas pour une panne passagère : recharger doit marcher.
     if (reason !== 'error' && reason !== 'rate_limited') forgetToken();
     showView('closed');
+  }
+
+  /**
+   * Micro refusé dans le navigateur d'une appli : pas de message d'erreur
+   * cryptique, la marche à suivre pour rouvrir le lien dans le vrai navigateur.
+   * Pas de bouton « Ouvrir dans Chrome » (lien intent:// sur Android) : il
+   * perdrait le secret, qui vit derrière le # de l'adresse.
+   */
+  function showElsewhere() {
+    $('[data-slot="elsewhere-title"]').textContent = text.elsewhereTitle.replace('{browser}', otherBrowser);
+    $('[data-slot="elsewhere-body"]').textContent = text.elsewhereBody.replace(/\{browser\}/g, otherBrowser);
+    $('[data-slot="elsewhere-step1"]').textContent = android ? text.elsewhereMenuAndroid : text.elsewhereMenuIos;
+    $('[data-slot="elsewhere-step2"]').textContent = android ? text.elsewhereOpenAndroid : text.elsewhereOpen;
+    $('[data-slot="elsewhere-hint"]').textContent = text.copyHint.replace('{browser}', otherBrowser);
+    $('#copy-link').textContent = text.copyLink;
+    showView('elsewhere');
+  }
+
+  function copyLink() {
+    var url = window.location.href;
+    var done = function () {
+      $('#copy-link').textContent = text.copied;
+    };
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText(url).then(done, function () { copyFallback(url, done); });
+    } else {
+      copyFallback(url, done);
+    }
+  }
+
+  /** Vieux navigateurs intégrés sans presse-papiers asynchrone : la sélection d'un champ. */
+  function copyFallback(url, done) {
+    var field = document.createElement('textarea');
+    field.value = url;
+    field.setAttribute('readonly', '');
+    field.className = 'offscreen';
+    document.body.appendChild(field);
+    field.select();
+    try {
+      if (document.execCommand('copy')) done();
+    } catch (e) { /* rien de copié : les deux étapes restent la voie */ }
+    document.body.removeChild(field);
   }
 
   function forgetToken() {
@@ -263,7 +333,8 @@
   function startRecording() {
     showError(null);
     if (!supported()) {
-      showError('unsupported');
+      if (inAppBrowser) showElsewhere();
+      else showError('unsupported');
       return;
     }
     setState('starting');
@@ -318,7 +389,9 @@
         session = null;
         setState('idle');
         var name = error && error.name;
-        if (name === 'NotAllowedError' || name === 'SecurityError') showError('micDenied');
+        // Dans une appli, un refus vient presque toujours de l'appli elle-même.
+        if (inAppBrowser && name !== 'NotReadableError' && name !== 'AbortError') showElsewhere();
+        else if (name === 'NotAllowedError' || name === 'SecurityError') showError('micDenied');
         else if (name === 'NotReadableError' || name === 'AbortError') showError('micBusy');
         else showError('unsupported');
       });
@@ -485,6 +558,7 @@
   });
   $('#retry').addEventListener('click', retry);
   $('#send').addEventListener('click', send);
+  $('#copy-link').addEventListener('click', copyLink);
 
   // Page quittée ou mise en arrière-plan : le micro est rendu, et la page revient
   // (cache avant/arrière de Safari) prête à réenregistrer.

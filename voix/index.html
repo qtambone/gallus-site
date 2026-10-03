@@ -63,6 +63,17 @@
       <p id="error" class="error" role="alert" hidden></p>
     </section>
 
+    <!-- Micro bloqué par le navigateur d'une appli : rouvrir dans le vrai navigateur -->
+    <section data-view="elsewhere" hidden>
+      <h1 data-slot="elsewhere-title"></h1>
+      <p class="muted" data-slot="elsewhere-body"></p>
+      <ol class="steps">
+        <li data-slot="elsewhere-step1"></li>
+        <li data-slot="elsewhere-step2"></li>
+      </ol>
+      <button id="copy-link" class="primary wide" type="button"></button>
+      <p class="muted small" data-slot="elsewhere-hint"></p>
+    </section>
     <!-- Envoyé -->
     <section data-view="done" hidden>
       <h1 data-i18n="doneTitle"></h1>
